@@ -1,0 +1,445 @@
+# #####
+# Changes with original:
+#   changed dag$freq into dag$p, also in the actual dags defined below
+#   added nchains as argument to calls to states2varsamps and states2varsamps in the runchains fncs
+#   new function genjoint: from chains to joint 
+#   new function genrespdistr: from joint to infs
+#   new function condprobMSbay2: same as condprobMSbay, except that it takes chainlens instead of varsamples to get chainlengths, so old one not needed anymore
+#   added rownames 111, 110 etc, to dags
+#   changed 'probs' to 'p' in condprobBay and states2varsampsjoint
+#   removed input 'dag' for states2varsampsjoint
+#   forced states2varsampsjoint to take DF as input (for ZD MS), forcing it to be a matrix
+#   removed runchainsMS and runchainsMSpoislen, fncs that did everything at once.
+#   added option to preddistrBay to choose colnames, either infnr or e.g. 'X1|Y==1'
+#   removed state as a variable/column in dagf
+#   removed fnc genpreddistr
+
+
+#mutation sampler
+#based on model Davis & Rehder (2020)
+#added bayesian version based on paper The Bayesian sampler (Zhu et al., 2020)
+
+#######################################################
+# packages
+#######################################################
+library(plyr)
+library(dplyr)
+
+
+#######################################################
+# Input used in experiment: Joint / DAGS / network parametrizations / ground truth causal networks given to participants
+#######################################################
+
+# Common cause/Chain structure: samples1.xlsx, in Rottman 2016 exp 1a commoncause (x1<-y->x2) and chain (x1->y->x2), n=32
+dagf1 <- data.frame(X1=c(1,1,1,1,0,0,0,0),
+                    Y=c(1,1,0,0,1,1,0,0),
+                    X2=c(1,0,1,0,1,0,1,0),
+                    p=c(9,3,1,3,3,1,3,9))
+rownames(dagf1)<- c("111", "110", "101", "100", "011", "010", "001", "000")
+# Common effect structure: samples2.xlsx, in Rottman 2016 exp 1a  commoneffect (x1->y<-x2), n=32
+dagf2 <- data.frame(X1=c(1,1,1,1,0,0,0,0),
+                    Y=c(1,1,0,0,1,1,0,0),
+                    X2=c(1,0,1,0,1,0,1,0), 
+                    p=c(6,4,2,4,4,0,4,8))
+rownames(dagf2)<- c("111", "110", "101", "100", "011", "010", "001", "000")
+
+
+
+#----------------------------------------------------------
+# The Mutation Sampler
+#----------------------------------------------------------
+
+# required adjacency matrix, defines what 'states' (e.g. 101) are adjacent to others (e.g. 001)
+# rows indicates current state, columns indicate which states are adjacent, 1 and 8 are the prototypical states (111 and 000 respectively)
+# this is the same, just a different format, as output of neigbors.of.joint() fnc when input joint is according to IK convention 111 to 000
+adjmat <- as.data.frame(matrix(0, 8, 8))
+adjmat[1,] <- c(0,1,1,0,1,0,0,0)
+adjmat[2,] <- c(1,0,0,1,0,1,0,0)
+adjmat[3,] <- c(1,0,0,1,0,0,1,0)
+adjmat[4,] <- c(0,1,1,0,0,0,0,1)
+adjmat[5,] <- c(1,0,0,0,0,1,1,0)
+adjmat[6,] <- c(0,1,0,0,1,0,0,1)
+adjmat[7,] <- c(0,0,1,0,1,0,0,1)
+adjmat[8,] <- c(0,0,0,1,0,1,1,0)
+
+
+## Mutation sampler
+MutationSampler <- function(len, startstate, dag){
+  # creates chain of samples based on Mutation sampling
+  # inputs: len = length of chain, startstate = first sample, where 1 and 8 are prototypical states, dag = Df with joint, needs vars: state, x1,y,x2, and p: frequency(of samples)/joint probabiblities
+  # Requires adjmat to be defined
+  
+  dag$jointprob <- dag$p/sum(dag$p)
+  
+  x = rep(0,len)
+  x[1] = startstate
+  for(i in 2:len){
+    currentstate = x[i-1]
+    proposedstate = which(adjmat[currentstate,] %in% 1)[sample(1:3,1)] # equal probability of all reachable states (1 mutated variable)
+    A = dag$jointprob[proposedstate]/dag$jointprob[currentstate] #trans prob A(q'|q)  = min(1 , joint(q')/joint(q))
+    if(runif(1)<A){
+      x[i] = proposedstate       # accept move with probabily min(1,A)
+    } else {
+      x[i] = currentstate        # otherwise "reject" move, and stay where we are
+    }
+  }
+  samples <- x 
+  return(samples)
+}
+
+#----------------------------------------------------------
+# Functions to manipulate generated chains
+#----------------------------------------------------------
+
+# Cut a dataframe with chains of equal length function to obtain chains with lenths sampled from a poisson distribution
+cutchainspois <- function(chains, meanlen, nchains){
+  # inputs: df with generated chains (each column a chain), mean length of chains, number of chains
+  # arg chains is set of chains generated with MS 
+  
+  poislengths <- (rpois(nchains, meanlen-2))+2 #lengths based on poisson distr with minimum = 2
+  cutchains <- matrix(nrow=max(poislengths), ncol=nchains)
+  
+  #now with loop, possibly vectorize later
+  for (i in 1:nchains){
+    cutchains[1:poislengths[i], i]<-chains[1:poislengths[i], i]
+  }
+  return(cutchains)
+}
+
+# function togo from statefreq format to dag1 format 
+# from frequency of state number(1:8) (columns: statenr, freq) to variable vector long format (columns: X1,Y,X2) 
+states2varsamps <- function(statefreq, dag, nchains){
+  #statefreq as generated by runchainMS, ie matrix with rows indexing chains, and columns indexing states, each entry indexes how often that state occursin within that chain
+  #dag = DF with dag parametrization / structure to use, needs vars: state, x1,y,x2, and frequency
+  #only uses dag to see what vars each statenr refers to, doesnt use the actual frequency and stuff.
+  #x <- array(0, c(len, 3, nchains)) #do list of dataframes instead!?!?!
+  #x <- list() #list of data frames, each dataframe will have var samples of a chain
+  
+  x <- lapply(1:nchains, function(i) {
+    matrix(unlist(sapply(1:8, function(ii) {
+      rep(dag[ii,2:4],statefreq[i,ii])}, simplify=F)),ncol=3, byrow=T)
+  })
+  return(x)
+}
+
+# function togo from statefreq format to dag1f format 
+# from prob of state number (columns: statenr, prob) to variable vector (columns: X1,Y,X2, prob) wide prob format
+states2varsampsjoint <- function(statejoint, nchains){
+  #statejoint as generated by runchainMS
+  #dag = DF with dag parametrization / structure to use, needs vars: state, x1,y,x2, and frequency, only uses this to see what vars each statenr refers to
+  #len <- sum(statejoint[1,]) #length of chains #THIS NOW BLOCKED OUT? WHY IS IT HERE? REMOVE IF NO ISSUES.
+  
+  statejoint <- as.matrix(statejoint) #ZD MS outputs statejoint as DF (compared to matrix from IK MS), this fnc requires matrix somehow.
+  
+  jointsetup <- data.frame(X1=c(1,1,1,1,0,0,0,0),
+                          Y=c(1,1,0,0,1,1,0,0),
+                          X2=c(1,0,1,0,1,0,1,0))
+  rownames(jointsetup)<- c("111", "110", "101", "100", "011", "010", "001", "000") #maybe softcode this jointsetup later, depending on pipeline
+  
+  x <- lapply(1:nchains, function(i) {
+    cbind(jointsetup,p=statejoint[i,])})
+  
+  return(x)
+}
+
+#----------------------------------------------------------
+# Functions to generate multiple chains with mutation sampler.
+#----------------------------------------------------------
+
+
+genchainsMS <- function(len, nchains, bias=0.5, dag){
+  # len = chain length
+  # nchains = number of chains
+  # bias = prob of starting at state 1
+  # dag = joint DF, needs vars: state, x1,y,x2, and  p: joint probability/frequency of samples
+  statefreq <- matrix(0,nchains,8)
+  chainjoint <- matrix(0,nchains,8)
+  samples <- matrix (0, len, nchains)
+  for (i in 1:nchains) { #create each chain and save them
+    startstate <- sample(c(1,8), 1, prob=c(bias, 1-bias))
+    samples[,i] <- MutationSampler(len, startstate, dag) # all samples all chains
+  }
+  res <- samples
+  return(res)
+}
+
+# this function does same as above, but draws chain length each time from Poisson distribution according to Davis & Rehder 2020
+
+genchainsMSpoislen <- function(meanlen, nchains, bias=0.5, dag){
+  # meanlen = mean chain length, draw from poisson meanlen-2, and then plus 2
+  # nchains = number of chains
+  # bias = prob of starting at state 1
+  # dag = joint DF, needs vars: state, x1,y,x2, and  p: joint probability/frequency of samples
+  statefreq <- matrix(0,nchains,8)
+  chainjoint <- matrix(0,nchains,8)
+  chainlens <- rpois(nchains, meanlen-2)+2
+  samples <- matrix (NaN, max(chainlens), nchains)
+  for (i in 1:nchains) { #create each chain and calculate some stuff for each.
+    startstate <- sample(c(1,8), 1, prob=c(bias, 1-bias))
+    samples[1:chainlens[i],i] <- MutationSampler(chainlens[i], startstate, dag) # all samples all chains
+  }
+  res <- samples
+  return(res)
+}
+
+#----------------------------------------------------------
+# Functions to generate predicted response distributions based on chains
+#----------------------------------------------------------
+
+# Function to compute mean joint distribution, joint distribution, and chain lengths, from chains
+genjoint <- function(samples){ 
+  #input is matrix/DF with each column being a chain, ie output from genchainsMS or genchainsMSpoislen
+  nchains <- ncol(samples)
+  chainlens <- apply(samples, 2, function(x){length(x[!is.na(x)])}) #vector of chainlengths, doesnt count NAs, so works with varying chainlengths
+  statefreq <- t(apply(samples, 2, function(X){table(factor(X, levels=1:8))}))
+  chainjoint <- prop.table(statefreq,1)
+  meanjointdistr <- apply(chainjoint, 2, mean)
+  meanjointdistr <- data.frame(state = as.factor(seq(1:8)), 
+                               X1=c(1,1,1,1,0,0,0,0),
+                               Y=c(1,1,0,0,1,1,0,0),
+                               X2=c(1,0,1,0,1,0,1,0), 
+                               p=meanjointdistr)
+  rownames(meanjointdistr)<- c("111", "110", "101", "100", "011", "010", "001", "000")
+  res <- list(meanjoint=meanjointdistr, chainjoints=chainjoint, chainlens=chainlens)
+  return(res)
+}
+
+# Function to compute from chainjoints to DF with resp distribution
+genrespdistr <- function(res, betavar=0){
+  # res should be output from genjoint
+  # that is, res should be a list with $chainjoints (joint distr per chain) and $chainlens (vector of chain lengths)
+  # betavar is prior beta(betavar,betavar) used for each inference
+  # Output: 
+  nchains <- length(res$chainlens)
+  chainjoint <- res$chainjoints
+  
+  varjoint <- states2varsampsjoint(chainjoint, nchains) #reconstruct the causal variables from the states wide format
+  chainMSprobs <- condprobMSBay2(betavar, nchains, res$chainlens, varjoint)# all possible prob inferences with prior Bayesian
+  chainMSprobs <- guessMS(chainMSprobs, nchains) #fill in NAs with 0.5
+  respdistr <- preddistrBay(nchains, chainMSprobs) #DF with all inferences from each chain based on prior and relative frequency
+  return(respdistr)
+}
+
+
+
+
+
+#######################################################
+# Calculate inferred probabilities based on relative frequency (standard MS method of Davis and Rehder)
+#######################################################
+
+
+
+
+
+#######################################################
+# Calculate inferred probabilities based on betavar prior combined with relative frequency.
+#######################################################
+condprobBay <- function (x, betavar, len, event = NULL, given = NULL) {
+  # calculates conditional or marginal probability based on combination of prior and relative freq in samples
+  # X is dataframe with column names as variables X1, Y, X2, and p  (probability)
+  # betavar refers to prior, prior is beta(betavar,betavar)
+  # len = amount of samples / chain length.
+  # event is the variable and value of which the probability is calculated, given is the condition statement
+  # event and given need to evaluate to logical expreesions (e.g. X1==1 or (X1=x=1&X2==0))
+  # returns NaN if event and conditioning state is never observed
+  if (!is.numeric(betavar)||!is.numeric(len)) {
+    stop("betavar and or len is missing")
+  }
+  if (missing(event)) {
+    r <- TRUE
+  }
+  else {
+    e <- substitute(event)
+    r <- eval(e, x, parent.frame())
+    r <- r & !is.na(r)
+    if (!isTRUE(all.equal(sum(x$p), 1))) 
+      warning("'space' does not have probability 1.")
+  }
+  A <- x[r, ] #part of x where event holds
+  if (missing(given)) {
+    p <- sum(A$p)
+  }
+  else {
+    f <- substitute(given)
+    g <- eval(f, x, enclos = parent.frame())
+    if (!is.logical(g)) {
+      B <- given
+    }
+    else {
+      g <- g & !is.na(g)
+      B <- x[g, ] #part of x where given holds
+    }
+    p <- ((sum(intersect(A, B)$p)*len)+betavar)/(sum((B$p)*len) + 2*betavar) #the estimated probability, with the beta prior incorporate as a 'pseudo count'
+  }
+  return(p)
+}
+
+condproballBay <- function(dagdata, betavar, len){
+  #only for discrete data, values need to be 0 and 1
+  
+  cndprbs <- list(
+    condprobBay(dagdata, betavar, len, X1==1),
+    condprobBay(dagdata, betavar, len, X1==1, (Y==0)),
+    condprobBay(dagdata, betavar, len, X1==1, (Y==1)),
+    condprobBay(dagdata, betavar, len, X1==1, (X2==0)),
+    condprobBay(dagdata, betavar, len, X1==1, (X2==1)),
+    condprobBay(dagdata, betavar, len, X1==1, (Y==0 & X2==0)),
+    condprobBay(dagdata, betavar, len, X1==1, (Y==1 & X2==0)),
+    condprobBay(dagdata, betavar, len, X1==1, (Y==0 & X2==1)),
+    condprobBay(dagdata, betavar, len, X1==1, (Y==1 & X2==1)),
+    condprobBay(dagdata, betavar, len, Y==1),
+    condprobBay(dagdata, betavar, len, Y==1, (X1==0)),
+    condprobBay(dagdata, betavar, len, Y==1, (X1==1)),
+    condprobBay(dagdata, betavar, len, Y==1, (X2==0)),
+    condprobBay(dagdata, betavar, len, Y==1, (X2==1)),
+    condprobBay(dagdata, betavar, len, Y==1, (X1==0 & X2==0)),
+    condprobBay(dagdata, betavar, len, Y==1, (X1==1 & X2==0)),
+    condprobBay(dagdata, betavar, len, Y==1, (X1==0 & X2==1)),
+    condprobBay(dagdata, betavar, len, Y==1, (X1==1 & X2==1)),
+    condprobBay(dagdata, betavar, len, X2==1),
+    condprobBay(dagdata, betavar, len, X2==1, (Y==0)),
+    condprobBay(dagdata, betavar, len, X2==1, (Y==1)),
+    condprobBay(dagdata, betavar, len, X2==1, (X1==0)),
+    condprobBay(dagdata, betavar, len, X2==1, (X1==1)),
+    condprobBay(dagdata, betavar, len, X2==1, (Y==0 & X1==0)),
+    condprobBay(dagdata, betavar, len, X2==1, (Y==1 & X1==0)),
+    condprobBay(dagdata, betavar, len, X2==1, (Y==0 & X1==1)),
+    condprobBay(dagdata, betavar, len, X2==1, (Y==1 & X1==1))
+  )
+  
+  
+  names(cndprbs) <- c(
+    'X1',
+    'X1|Y==0',
+    'X1|Y==1',
+    'X1|X2==0',
+    'X1|X2==1', 
+    'X1|Y==0 & X2==0',
+    'X1|Y==1 & X2==0',
+    'X1|Y==0 & X2==1',
+    'X1|Y==1 & X2==1',
+    'Y',
+    'Y|X1==0',
+    'Y|X1==1',
+    'Y|X2==0',
+    'Y|X2==1', 
+    'Y|X1==0 & X2==0',
+    'Y|X1==1 & X2==0',
+    'Y|X1==0 & X2==1',
+    'Y|X1==1 & X2==1',
+    'X2',
+    'X2|Y==0',
+    'X2|Y==1',
+    'X2|X1==0',
+    'X2|X1==1', 
+    'X2|Y==0 & X1==0',
+    'X2|Y==1 & X1==0',
+    'X2|Y==0 & X1==1',
+    'X2|Y==1 & X1==1'
+  )
+  return(cndprbs)
+}
+
+
+condprobMSBay <- function(betavar, nchains, varsamples, varjoint){ 
+  # Function to do conditional or marginal prob query on samples from runchainsMS
+  chainprobs <- lapply(1:nchains, function(i) {
+    condproballBay(varjoint[[i]], betavar, nrow(varsamples[[i]])) 
+  })
+  return(chainprobs)
+}
+
+condprobMSBay2 <- function(betavar, nchains, chainlens, varjoint){ 
+  # Function to do conditional or marginal prob query on samples from runchainsMS
+  chainprobs <- lapply(1:nchains, function(i) {
+    condproballBay(varjoint[[i]], betavar, chainlens[i]) 
+  })
+  return(chainprobs)
+}
+
+guessMS <- function(x, nchains){
+  # function to change NaNs to .5 in the prob inferences, according to MS model this happens when states are not visited
+  # input should be output of condprobMS function.
+  for (i in 1:nchains){ #loop through chains #LvM09062020: Here, I did not replace the loop with lapply, because lapply removes the names of the list
+    for (ii in 1:27){   #loop through each prob query
+      if (is.nan(x[[i]][[ii]])){
+        x[[i]][ii] <- .5
+      }
+    }
+  }
+  return(x)
+}
+
+
+#function to get DF with distribution of all inferences
+preddistrBay <- function(nchains, chainMSprobsBay, infnames=0){
+  # argument res is output from runchains
+  preddistr <- data.frame(matrix(ncol = 27, nrow = nchains))
+  
+  if (infnames==0) {
+    colnames(preddistr) <- c( 'X1|X2==0',
+                              'X1|X2==1', 
+                              'X1|Y==0',
+                              'X1|Y==0 & X2==0',
+                              'X1|Y==0 & X2==1',
+                              'X1|Y==1',
+                              'X1|Y==1 & X2==0',
+                              'X1|Y==1 & X2==1',
+                              'Y|X2==0',
+                              'Y|X2==1', 
+                              'Y|X1==0',
+                              'Y|X1==0 & X2==0',
+                              'Y|X1==0 & X2==1',
+                              'Y|X1==1',
+                              'Y|X1==1 & X2==0',
+                              'Y|X1==1 & X2==1',
+                              'X2|Y==0',
+                              'X2|Y==1',
+                              'X2|X1==0',
+                              'X2|Y==0 & X1==0',
+                              'X2|Y==1 & X1==0',
+                              'X2|X1==1', 
+                              'X2|Y==0 & X1==1',
+                              'X2|Y==1 & X1==1',
+                              'X1',
+                              'Y',
+                              'X2'
+                            )
+  } else {
+    colnames(preddistr) <- paste0("infnr", as.character(seq(1:27)))
+  }
+  
+  for (i in 1:nchains){ 
+    preddistr[i,1] <- chainMSprobsBay[[i]]$`X1|X2==0` #infnr 1
+    preddistr[i,2] <- chainMSprobsBay[[i]]$`X1|X2==1` #infnr 2
+    preddistr[i,3] <- chainMSprobsBay[[i]]$`X1|Y==0` #infnr 3
+    preddistr[i,4] <- chainMSprobsBay[[i]]$`X1|Y==0 & X2==0` #infnr 4
+    preddistr[i,5] <- chainMSprobsBay[[i]]$`X1|Y==0 & X2==1` #infnr 5
+    preddistr[i,6] <- chainMSprobsBay[[i]]$`X1|Y==1` #infnr 6
+    preddistr[i,7] <- chainMSprobsBay[[i]]$`X1|Y==1 & X2==0` #infnr 7
+    preddistr[i,8] <- chainMSprobsBay[[i]]$`X1|Y==1 & X2==1` #infnr 8
+    preddistr[i,9] <- chainMSprobsBay[[i]]$`Y|X2==0` #infnr 9
+    preddistr[i,10] <- chainMSprobsBay[[i]]$`Y|X2==1` #infnr 10
+    preddistr[i,11] <- chainMSprobsBay[[i]]$`Y|X1==0` #infnr 11
+    preddistr[i,12] <- chainMSprobsBay[[i]]$`Y|X1==0 & X2==0` #infnr 12
+    preddistr[i,13] <- chainMSprobsBay[[i]]$`Y|X1==0 & X2==1` #infnr 13
+    preddistr[i,14] <- chainMSprobsBay[[i]]$`Y|X1==1` #infnr 14
+    preddistr[i,15] <- chainMSprobsBay[[i]]$`Y|X1==1 & X2==0` #infnr 15
+    preddistr[i,16] <- chainMSprobsBay[[i]]$`Y|X1==1 & X2==1` #infnr 16
+    preddistr[i,17] <- chainMSprobsBay[[i]]$`X2|Y==0` #infnr 17
+    preddistr[i,18] <- chainMSprobsBay[[i]]$`X2|Y==1` #infnr 18
+    preddistr[i,19] <- chainMSprobsBay[[i]]$`X2|X1==0` #infnr 19
+    preddistr[i,20] <- chainMSprobsBay[[i]]$`X2|Y==0 & X1==0` #infnr 20
+    preddistr[i,21] <- chainMSprobsBay[[i]]$`X2|Y==1 & X1==0` #infnr 21
+    preddistr[i,22] <- chainMSprobsBay[[i]]$`X2|X1==1` #infnr 22
+    preddistr[i,23] <- chainMSprobsBay[[i]]$`X2|Y==0 & X1==1` #infnr 23
+    preddistr[i,24] <- chainMSprobsBay[[i]]$`X2|Y==1 & X1==1` #infnr 24
+    preddistr[i,25] <- chainMSprobsBay[[i]]$`X1` #infnr 25
+    preddistr[i,26] <- chainMSprobsBay[[i]]$`Y` #infnr 26
+    preddistr[i,27] <- chainMSprobsBay[[i]]$`X2` #infnr 27
+  }
+  return(preddistr)
+}
+
+

@@ -11,7 +11,7 @@ source ("../utilities/cgm.R")
 #   mutsampler                                                                                       
 #                                                                                             
 #   Parameters:                                                   
-#     - joint:           the joint distribution to sample over                                     
+#     - joint:           the joint distribution to sample over, DF with column p indicating probability, and nrow being the nr of possible states                                  
 #     - chainLen:        length of one chain                                                       
 #     - nChains:         number of chains to run                                       
 #     - neighbors:       indicates which states are "neighbors" of each other.   
@@ -54,7 +54,6 @@ mutsampler <- function (joint,                               # joint distributio
                         method='mutate', 
                         q.ps=NULL,                       # An alternative proposal distribution.
                         sample.in.parallel=F) {
-  
   # function for running a chain
   chain.runner = function (i) {
     mcmcWinner <- rep(1e-10, no.states) # to store data, 1e-10 is to avoid na's, shouldn't matter
@@ -94,6 +93,62 @@ mutsampler <- function (joint,                               # joint distributio
   stopifnot (equal.within.tol (sum (mcmcWinner), 1))
   joint$p = mcmcWinner / sum (mcmcWinner)
   return(joint)
+}
+#-------------------------------------------------------------------------------------------
+#   same as above mutsampler, but also outputs the joint distr of each chain and chainlengths in addition to mean joint of all chains
+#   !!! Only works for set chainlength, not for varying chainlength based on poisson distr !!!
+mutsampler2 <- function (joint,                               # joint distribution
+                        chainLen,                        # number of steps in a chain
+                        nChains,                         # number of chains to run
+                        neighbors=NULL,                  # use neighbors proposal distribution or not?
+                        starting.states=c(nrow(joint), 1), # possible states to start at, prototypes by default
+                        bias=1 / length(starting.states), 
+                        method='mutate', 
+                        q.ps=NULL,                       # An alternative proposal distribution.
+                        sample.in.parallel=F) {
+  # function for running a chain
+  chain.runner = function (i) {
+    mcmcWinner <- rep(1e-10, no.states) # to store data, 1e-10 is to avoid na's, shouldn't matter
+    # sample a starting state
+    current <- sample(starting.states, 1, prob=starting.state.dist)
+    # run one chain
+    for (t in 1:chainLen) {
+      mcmcWinner[current] <- mcmcWinner[current] + 1  # counts the starting point
+      current <- sample(1:no.states, 1, prob=transition.ps[current,])
+    }
+    # return normalized run
+    return (mcmcWinner / sum(mcmcWinner))
+  }
+  
+  stopifnot (nChains > 0 & chainLen > 0)
+  no.states <- nrow(joint)
+  
+  # defining the starting state distribution
+  if (is.null (starting.states)) {
+    # Randomly starting state.
+    starting.state.dist = 1:no.states
+    starting.state.dist <- rep(1/no.states, no.states)
+  }
+  else {
+    # Use caller specified starting states.
+    starting.state.dist <- c(bias, 1-bias)
+  }
+  
+  # Precompute transition probability of any state to any other state
+  transition.ps = transition.ps.fun (joint, neighbors, method, q.ps)
+  
+  # Run chains, potentially in parallel
+  chainjoints <- ldply (1:nChains, chain.runner, .parallel=sample.in.parallel) #joint distr per chain (previously mcmcWinner)
+  
+  # Average over chains
+  meanjointdistr <- apply (chainjoints, 2, mean)
+  stopifnot (equal.within.tol (sum (meanjointdistr), 1))
+  joint$p = meanjointdistr / sum (meanjointdistr)
+  
+  chainlens <- rep(chainLen, nChains)
+  
+  res <- list(meanjoint=joint, chainjoints=chainjoints, chainlens=chainlens)
+  return(res)
 }
 
 #--------------------------------------------------------------
