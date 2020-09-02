@@ -1,4 +1,4 @@
-## test models and code ZD
+## Test model simulations with standardized inputs and outputs
 
 rm(list=ls())
 
@@ -25,34 +25,6 @@ source ("../models/beta_variability_model.R")
 
 
 
-#####
-# So goal is to create pipeline, where input is a joint distribution, and output is joint distribution + distribution of inferences 
-# We want the distribution of inferences as that is where the difference is between MS and BMS 
-# FOR THIS WE NEED JOINT DISTRIBUTIONS OF EVERY CHAIN!
-# MAIN THING: i need to use input joint instead of dag.
-
-# To Do
-
-# - clean up BMS script, remove on-used functions, clean up and comment the ones use
-# - clean up this script.
-# - ZD model takes below testjoint as input, so does IK model. 
-        # However, IK model does not take as input standard ZD input (see test.mutsampler.R), 
-        # as the convention of order of system states is not flexible. Hence outputted joint 
-        # has incorrect variable name, but correct probs as 'adjmat' is the same as 'neighbors', 
-        # since our conventions are symmetrically reversed. it now works with joint.cgm.generic2
-# - do a more formal test of equivalence predicted joints of ZD and IK MS
-# - put your utilities together. mostly in bms, inferencenames is in betavariability 
-# - als standardize as below ZD's exact and poisson models.
-
-        
-        
-        
-        
-# Questions        
-#    Is the poisson varying chain length actually implemented in your sampler? doesnt seem like it is right, only in expected value one.        
-#    The ParVar model does not reconstruc normative joint under zero noise. also with sum noise the output joint seems unreasonable.
-#    Havent yet implemented your exact/poisson model, should I?
-
 #----------------------------------------------------------
 # Testing inputs
 #----------------------------------------------------------
@@ -70,16 +42,14 @@ testjoint
 var.names = c ('X1','Y','X2')
 ms = matrix (0, nrow=3, ncol=3, dimnames = list (var.names, var.names))
 ms['X1','Y'] = ms['Y','X2'] = .5
-bs = c (.75, .75, .75)
+bs = c (.5, .25, .25)
 testjoint = joint.cgm.generic2(ms, bs) # joint.cgm.generic2 follows IK convention, starting at 111
 testjoint
 
 # normative inferences
-condproballBay(testjoint, 0, 10) #chainlength (3rd arg) is irrelevant when betavar=0
-
 normresps <- list()
-normresps[[1]]<-condproballBay(testjoint, 0, 10) #need to make this in DF then apply preddistrBay to obtain same order as model predictions
-normresps <- preddistrBay(1, normresps, infnames=0)
+normresps[[1]]<-condproballBay(testjoint, 0, 10) #chainlength (3rd arg) is irrelevant when betavar(2nd arg)=0
+normresps <- preddistrBay(1, normresps, infnames=0) #need to make this in DF then apply preddistrBay to obtain same order as model predictions
 normresps
 
 #----------------------------------------------------------
@@ -107,33 +77,72 @@ respdistr.parvar <- genrespdistr(a, betavar=0) #when using genrespdistr on param
 #----------------------------------------------------------
 
 test.neighbors = neighbors.of.joint (testjoint)
-testmsjoint <- mutsampler2(testjoint, 10, 15, neighbors=test.neighbors)
-respdistr.ZDMS <- genrespdistr(testmsjoint, betavar=1) #betavar=1 is uniform prior
+testmsjoint1 <- mutsampler2(joint=testjoint, chainLen=10, nChains=15, neighbors=test.neighbors)
+respdistr.ZDMS <- genrespdistr(testmsjoint1, betavar=0) #betavar=1 is uniform prior
 respdistr.ZDMS
-#----------------------------------------------------------
-# ZD expected values
-
-test.neighbors = neighbors.of.joint (testjoint)
-
-ms.expected.joint <- mutsampler.exact(testjoint, 100, 15, neighbors=test.neighbors)
-#no implementation yet to obtain distribution of inferences
 
 
 #----------------------------------------------------------
 # IK mutation sampler
 #----------------------------------------------------------
 
-#res <- genchainsMSpoislen(10, 12, 0.5, testjoint) #generate chains with lengths according poisson distr
-res <- genchainsMS(10, 15, 0.5, testjoint) #generate chains
-res2 <- genjoint(res) #calculate mean joint, and joint per chain, and vector chainlengths
-respdistr.IKMS <- genrespdistr(res2, betavar=1) # function  going from chainjoints + chainlens to response distributions.
+#res <- genchainsMSpoislen(meanlen=10, nchains=12, bias=0.5, joint=testjoint) #generate chains with lengths according poisson distr
+res <- genchainsMS(len=10, nchains=15, bias=0.5, joint=testjoint) #generate chains
+testmsjoint2 <- genjoint(res) #calculate mean joint, and joint per chain, and vector chainlengths
+respdistr.IKMS <- genrespdistr(testmsjoint2, betavar=0) # function  going from chainjoints + chainlens to response distributions.
 respdistr.IKMS
 
 
 
+#----------------------------------------------------------
+# Fnc to generate plots for each inference based on two sets of response distributions to compare
+#----------------------------------------------------------
 
+library(ggplot2)
 
+# fnc generates 27 density plots to compare simulated response distributions.
+compare.resp.distr.plots <- function(respdistr1, respdistr2, normresps){
+        #function to input two response inference distributions and plot all densities to compare
+        plots.compare.allinfs <- list()
+        for (inf in 1:27){
+                plots.compare.allinfs[[inf]] <- local({
+                        inf <- inf
+                        distr1 <- respdistr1[,inf]
+                        distr2 <- respdistr2[,inf]
+                        normresp <- normresps[[inf]]
+                        titleinf <- names(respdistr1)[inf]
+                        ks.stat <- ks.test(distr1, distr2)$statistic
+                        ks.pval <- ks.test(distr1, distr2)$p.value
+                        p1 <- ggplot() + 
+                                geom_density(aes(x=distr1, y=..density..))+
+                                geom_density(aes(x=distr2, y=..density..), colour='red')+
+                                geom_vline(aes(xintercept=normresp))+
+                                xlim(c(0,1))+
+                                ggtitle(paste("response distribution", titleinf), subtitle = paste('KS stat', ks.stat, 'pvalue', ks.pval))
+                        print(p1)
+                })
+        }
+}
 
+#----------------------------------------------------------
+# Comparison ZD and IK mutation samplers simulated response distributions
+#----------------------------------------------------------
 
+joint <- testjoint
+test.neighbors = neighbors.of.joint (testjoint)
+chainlen <- 10
+nchains <- 10000
 
+testmsjoint <- mutsampler2(joint=testjoint, chainLen=chainlen, nChains=nchains, neighbors=test.neighbors)
+respdistr.ZDMS <- genrespdistr(testmsjoint, betavar=1) 
+
+res <- genchainsMS(len=chainlen, nchains=nchains, bias=0.5, joint=testjoint) 
+testmsjoint2 <- genjoint(res)
+respdistr.IKMS <- genrespdistr(testmsjoint2, betavar=1) 
+
+normresps <- list()
+normresps[[1]]<-condproballBay(testjoint, 0, 10) #chainlength (3rd arg) is irrelevant when betavar(2nd arg)=0
+normresps <- preddistrBay(1, normresps, infnames=0) #need to make this in DF then apply preddistrBay to obtain same order as model predictions
+
+compare.resp.distr.plots(respdistr.ZDMS, respdistr.IKMS, normresps)
 
