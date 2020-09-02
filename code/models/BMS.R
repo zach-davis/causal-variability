@@ -1,21 +1,5 @@
-# #####
-# Changes with original:
-#   changed dag$freq into dag$p, also in the actual dags defined below
-#   added nchains as argument to calls to states2varsamps and states2varsamps in the runchains fncs
-#   new function genjoint: from chains to joint 
-#   new function genrespdistr: from joint to infs
-#   new function condprobMSbay2: same as condprobMSbay, except that it takes chainlens instead of varsamples to get chainlengths, so old one not needed anymore
-#   added rownames 111, 110 etc, to dags
-#   changed 'probs' to 'p' in condprobBay and states2varsampsjoint
-#   removed input 'dag' for states2varsampsjoint
-#   forced states2varsampsjoint to take DF as input (for ZD MS), forcing it to be a matrix
-#   removed runchainsMS and runchainsMSpoislen, fncs that did everything at once.
-#   added option to preddistrBay to choose colnames, either infnr or e.g. 'X1|Y==1'
-#   removed state as a variable/column in dagf
-#   removed fnc genpreddistr
 
-
-#mutation sampler
+#bayesian mutation sampler
 #based on model Davis & Rehder (2020)
 #added bayesian version based on paper The Bayesian sampler (Zhu et al., 2020)
 
@@ -147,36 +131,35 @@ states2varsampsjoint <- function(statejoint, nchains){
 #----------------------------------------------------------
 
 
-genchainsMS <- function(len, nchains, bias=0.5, dag){
+genchainsMS <- function(len, nchains, bias=0.5, joint){
   # len = chain length
   # nchains = number of chains
   # bias = prob of starting at state 1
-  # dag = joint DF, needs vars: state, x1,y,x2, and  p: joint probability/frequency of samples
+  # joint = joint DF, needs vars: state, x1,y,x2, and  p: joint probability/frequency of samples
   statefreq <- matrix(0,nchains,8)
   chainjoint <- matrix(0,nchains,8)
   samples <- matrix (0, len, nchains)
   for (i in 1:nchains) { #create each chain and save them
     startstate <- sample(c(1,8), 1, prob=c(bias, 1-bias))
-    samples[,i] <- MutationSampler(len, startstate, dag) # all samples all chains
+    samples[,i] <- MutationSampler(len, startstate, joint) # all samples all chains
   }
   res <- samples
   return(res)
 }
 
 # this function does same as above, but draws chain length each time from Poisson distribution according to Davis & Rehder 2020
-
-genchainsMSpoislen <- function(meanlen, nchains, bias=0.5, dag){
+genchainsMSpoislen <- function(meanlen, nchains, bias=0.5, joint){
   # meanlen = mean chain length, draw from poisson meanlen-2, and then plus 2
   # nchains = number of chains
   # bias = prob of starting at state 1
-  # dag = joint DF, needs vars: state, x1,y,x2, and  p: joint probability/frequency of samples
+  # joint = joint DF, needs vars: state, x1,y,x2, and  p: joint probability/frequency of samples
   statefreq <- matrix(0,nchains,8)
   chainjoint <- matrix(0,nchains,8)
   chainlens <- rpois(nchains, meanlen-2)+2
   samples <- matrix (NaN, max(chainlens), nchains)
   for (i in 1:nchains) { #create each chain and calculate some stuff for each.
     startstate <- sample(c(1,8), 1, prob=c(bias, 1-bias))
-    samples[1:chainlens[i],i] <- MutationSampler(chainlens[i], startstate, dag) # all samples all chains
+    samples[1:chainlens[i],i] <- MutationSampler(chainlens[i], startstate, joint) # all samples all chains
   }
   res <- samples
   return(res)
@@ -188,7 +171,8 @@ genchainsMSpoislen <- function(meanlen, nchains, bias=0.5, dag){
 
 # Function to compute mean joint distribution, joint distribution, and chain lengths, from chains
 genjoint <- function(samples){ 
-  #input is matrix/DF with each column being a chain, ie output from genchainsMS or genchainsMSpoislen
+  # input is matrix/DF with each column being a chain, ie output from genchainsMS or genchainsMSpoislen, with 1-8 referring to states 111-000
+  # outputt is list with mean joint distr, joint distr per chain, and vector chainlengths
   nchains <- ncol(samples)
   chainlens <- apply(samples, 2, function(x){length(x[!is.na(x)])}) #vector of chainlengths, doesnt count NAs, so works with varying chainlengths
   statefreq <- t(apply(samples, 2, function(X){table(factor(X, levels=1:8))}))
