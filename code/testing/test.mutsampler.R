@@ -4,6 +4,7 @@
 #----------------------------------------------------------
 
 library (doMC)  # Multicore support 
+library(foreach)
 no.cpus = 4
 registerDoMC(no.cpus)  # No. of cores to use
 

@@ -18,6 +18,13 @@ joint.cgm.generic = function (ms, bs) {
   return (j)
 }
 
+joint.cgm.generic2 = function (ms, bs) { #same as above, except reverses order of rows, so returns joint in IK convention
+  j = joint.cgm.generic(ms, bs)
+  j = j[nrow(j):1,]
+  return (j)
+}
+
+
 #-------------------------------------------------------------------------------------------
 # Utility routine.
 # Compute joint probabilities.
