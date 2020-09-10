@@ -135,7 +135,17 @@ assert.names = function (j, vs) {
     stop ('assert.names: Names (', vs, '), not all in joint (', joint.vs (j), ').')
 }   
 
-
+#--------------------------------------------------------------
+# normalizes a joint distribution 
+#----------------------------------------------------------
+joint.normalized = function (joint) { 
+  joint$p = joint$p / sum (joint$p)
+  if (any (is.nan (joint$p))) { 
+    print (joint); 
+    stop ('joint.normalized: NaNs in normalized joint.\n') 
+  }
+  return(joint)
+}   
 
 
 

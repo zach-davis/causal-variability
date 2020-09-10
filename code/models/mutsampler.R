@@ -374,17 +374,6 @@ mutsampler.generic = function (joint,
 }
 
 #--------------------------------------------------------------
-# normalizes a joint distribution 
-joint.normalized = function (joint) { 
-  joint$p = joint$p / sum (joint$p)
-  if (any (is.nan (joint$p))) { 
-    print (joint); 
-    stop ('joint.normalized: NaNs in normalized joint.\n') 
-  }
-  return(joint)
-}   
-
-#--------------------------------------------------------------
 # Returns a proposal distribution that biases sampling away from those system 
 # states that will not be used in a subsequent conditional probabiity judgment. 
 # The amount of the bias is determined condition.true.weight. States that will be
