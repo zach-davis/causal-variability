@@ -24,6 +24,16 @@ joint.cgm.generic2 = function (ms, bs) { #same as above, except reverses order o
   return (j)
 }
 
+joint.cgm.generic3 = function (ms, bs) { #same as above (joint.cgm.generic2), except now includes ms,bs, and normative inferences as outputs
+  j = joint.cgm.generic(ms, bs)
+  j = j[nrow(j):1,]
+  normresps <- list()
+  normresps[[1]]<-condproballBay(j, 0, 10)
+  normresps <- preddistrBay(1, normresps, infnames=0)
+  res <- list(joint=j, ms=ms, bs=bs, normresps=normresps)
+  return (res)
+}
+
 
 #-------------------------------------------------------------------------------------------
 # Utility routine.

@@ -7,6 +7,12 @@ setwd(this.dir)
 source ("../utilities/joint.utilities.R")
 source ("../utilities/cgm.R")
 
+
+# newest changes:
+# making mutsampler2 also output all input parameters
+
+
+
 #-------------------------------------------------------------------------------------------
 #   mutsampler                                                                                       
 #                                                                                             
@@ -120,6 +126,12 @@ mutsampler2 <- function (joint,                               # joint distributi
     return (mcmcWinner / sum(mcmcWinner))
   }
   
+  normresp <- joint$normresps
+  ms <- joint$ms
+  bs <- joint$bs
+  joint <- joint$joint
+  normjoint <- joint
+  
   stopifnot (nChains > 0 & chainLen > 0)
   no.states <- nrow(joint)
   
@@ -146,8 +158,11 @@ mutsampler2 <- function (joint,                               # joint distributi
   joint$p = meanjointdistr / sum (meanjointdistr)
   
   chainlens <- rep(chainLen, nChains)
+  meanChainlen <- mean(chainlens)
   
-  res <- list(meanjoint=joint, chainjoints=chainjoints, chainlens=chainlens)
+  res <- list(meanjoint=joint, chainjoints=chainjoints, 
+              chainlens=chainlens, meanChainlen=meanChainlen, normjoint=normjoint, nChains=nChains, bias=bias, normresps=normresp, ms=ms, bs=bs,
+              model="ZD Mutation Sampler")
   return(res)
 }
 
@@ -372,6 +387,8 @@ mutsampler.generic = function (joint,
   joint$p = as.vector (do.call (chain.fun, list (ps, transition.ps)))
   return(joint)
 }
+
+
 
 #--------------------------------------------------------------
 # Returns a proposal distribution that biases sampling away from those system 

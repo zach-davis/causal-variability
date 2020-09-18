@@ -10,6 +10,14 @@ library(plyr)
 library(dplyr)
 
 
+
+# newest changes:
+# making genchainsMS and genchainsMSpoislen also output all input parameters
+# make genjoint take as input and also output all input parameters
+# make genrespdistr take as input and also output all input parameters
+
+
+
 #######################################################
 # Input used in experiment: Joint / DAGS / network parametrizations / ground truth causal networks given to participants
 #######################################################
@@ -139,11 +147,21 @@ genchainsMS <- function(len, nchains, bias=0.5, joint){
   statefreq <- matrix(0,nchains,8)
   chainjoint <- matrix(0,nchains,8)
   samples <- matrix (0, len, nchains)
+  
+  normresp <- joint$normresps
+  ms <- joint$ms
+  bs <- joint$bs
+  joint <- joint$joint
+  
   for (i in 1:nchains) { #create each chain and save them
     startstate <- sample(c(1,8), 1, prob=c(bias, 1-bias))
     samples[,i] <- MutationSampler(len, startstate, joint) # all samples all chains
   }
-  res <- samples
+ 
+  res <- list(samples=samples, meanChainlen=len, normjoint=joint, nChains=nchains, bias=bias, normresps=normresp, ms=ms, bs=bs,
+              model="IK BayesianMS")
+  
+  
   return(res)
 }
 
@@ -157,25 +175,34 @@ genchainsMSpoislen <- function(meanlen, nchains, bias=0.5, joint){
   chainjoint <- matrix(0,nchains,8)
   chainlens <- rpois(nchains, meanlen-2)+2
   samples <- matrix (NaN, max(chainlens), nchains)
+  
+  normresp <- joint$normresps
+  ms <- joint$ms
+  bs <- joint$bs
+  joint <- joint$joint
+  
   for (i in 1:nchains) { #create each chain and calculate some stuff for each.
     startstate <- sample(c(1,8), 1, prob=c(bias, 1-bias))
     samples[1:chainlens[i],i] <- MutationSampler(chainlens[i], startstate, joint) # all samples all chains
   }
-  res <- samples
+  res <- list(samples=samples, meanChainlen=meanlen, normjoint=joint, nChains=nchains, bias=bias, normresps=normresp, ms=ms, bs=bs,
+              model="IK BayesianMS")
   return(res)
 }
+
+
 
 #----------------------------------------------------------
 # Functions to generate predicted response distributions based on chains
 #----------------------------------------------------------
 
 # Function to compute mean joint distribution, joint distribution, and chain lengths, from chains
-genjoint <- function(samples){ 
+genjoint <- function(res){ 
   # input is matrix/DF with each column being a chain, ie output from genchainsMS or genchainsMSpoislen, with 1-8 referring to states 111-000
   # outputt is list with mean joint distr, joint distr per chain, and vector chainlengths
-  nchains <- ncol(samples)
-  chainlens <- apply(samples, 2, function(x){length(x[!is.na(x)])}) #vector of chainlengths, doesnt count NAs, so works with varying chainlengths
-  statefreq <- t(apply(samples, 2, function(X){table(factor(X, levels=1:8))}))
+  nchains <- ncol(res$samples)
+  chainlens <- apply(res$samples, 2, function(x){length(x[!is.na(x)])}) #vector of chainlengths, doesnt count NAs, so works with varying chainlengths
+  statefreq <- t(apply(res$samples, 2, function(X){table(factor(X, levels=1:8))}))
   chainjoint <- prop.table(statefreq,1)
   meanjointdistr <- apply(chainjoint, 2, mean)
   meanjointdistr <- data.frame(state = as.factor(seq(1:8)), 
@@ -184,14 +211,16 @@ genjoint <- function(samples){
                                X2=c(1,0,1,0,1,0,1,0), 
                                p=meanjointdistr)
   rownames(meanjointdistr)<- c("111", "110", "101", "100", "011", "010", "001", "000")
-  res <- list(meanjoint=meanjointdistr, chainjoints=chainjoint, chainlens=chainlens)
+  res <- list(meanjoint=meanjointdistr, chainjoints=chainjoint, 
+              chainlens=chainlens, meanChainlen=res$meanChainlen, normjoint=res$normjoint, nChains=res$nChains, bias=res$bias, 
+              normresps=res$normresps, ms=res$ms, bs=res$bs, model=res$model)
   return(res)
 }
 
-# Function to compute from chainjoints to DF with resp distribution
+
+# Function to generate DF with response distributions for each inference from chainjoint
 genrespdistr <- function(res, betavar=0){
-  # res should be output from genjoint
-  # that is, res should be a list with $chainjoints (joint distr per chain) and $chainlens (vector of chain lengths)
+  # res should be output from genjoint, see above
   # betavar is prior beta(betavar,betavar) used for each inference
   # Output: 
   nchains <- length(res$chainlens)
@@ -201,16 +230,13 @@ genrespdistr <- function(res, betavar=0){
   chainMSprobs <- condprobMSBay2(betavar, nchains, res$chainlens, varjoint)# all possible prob inferences with prior Bayesian
   chainMSprobs <- guessMS(chainMSprobs, nchains) #fill in NAs with 0.5
   respdistr <- preddistrBay(nchains, chainMSprobs) #DF with all inferences from each chain based on prior and relative frequency
-  return(respdistr)
+  
+  res <- list(respdistr=respdistr, meanjoint=res$meanjoint, chainjoints=res$chainjoints, 
+              chainlens=res$chainlens, meanChainlen=res$meanChainlen, betavar=betavar, 
+              normjoint=res$normjoint, normresps=res$normresps, ms=res$ms, bs=res$bs,nChains=res$nChains, bias=res$bias, model=res$model)
+  
+  return(res)
 }
-
-
-
-
-
-#######################################################
-# Calculate inferred probabilities based on relative frequency (standard MS method of Davis and Rehder)
-#######################################################
 
 
 

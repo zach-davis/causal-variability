@@ -43,24 +43,27 @@ inferencenames <- c( 'X1|X2==0',
 #----------------------------------------------------------
 
 
+
 betavariability.sim <- function(joint, concentration, nSamps){
-  # inputs: joint distribution, concentration parameter, number of samples
+  # inputs: joint distribution (list with joint, ms, bs, normresps), concentration parameter, number of samples
   # output: distribution of inferences
-  normresp <- list()
-  normresp[[1]]<-condproballBay(joint, 0, 10) #nested list for compatibility with fnc preddistrBay
-  normresp <- preddistrBay(1, normresp) #DF with each normative response
+  normresp <- joint$normresps
+  ms <- joint$ms
+  bs <- joint$bs
+  joint <- joint$joint
   
-  res <- data.frame(matrix(NA, nSamps, 27))
-  colnames(res) <- inferencenames
+  respdistr <- data.frame(matrix(NA, nSamps, 27))
+  colnames(respdistr) <- inferencenames
   
   for (i in 1:27){
     shape1 <- as.numeric(normresp[i]*(concentration-2) + 1) #solve eq for mode for shape1, plugging in norm resp and shape1=concentration-shape2
     shape2 <- concentration - shape1
-    res[,i] <- rbeta(nSamps, shape1, shape2)
+    respdistr[,i] <- rbeta(nSamps, shape1, shape2)
   }
+  
+  res <- list(respdistr=respdistr, normjoint=joint, concentration=concentration, nSamps=nSamps, normresps=normresp, ms=ms, bs=bs)
   return(res)
 }
-
 
 
 #----------------------------------------------------------

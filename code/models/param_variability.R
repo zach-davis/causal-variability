@@ -28,8 +28,11 @@ param_variability <- function(ms,
                          data.frame(
                              matrix(ncol=nSamples,
                                     nrow=2**length(bs))))
+    normjoint <- joint.cgm.generic3(ms, bs)
+    normresps <- normjoint$normresps
+    normjoint <- normjoint$joint
     
-    ms_conc <- bs_conc <- 100
+    ms_conc <- bs_conc <- 100                                 ### FORCES THE CONCS TO 100 ALWAYS????????
     # sampling causal strengths --------------------------------
     # array of ms (third dimension is each new sampled ms)
     ms_dist <- array(NaN, dim=c(dim(ms)[1], dim(ms)[2], nSamples))
@@ -79,7 +82,9 @@ param_variability <- function(ms,
     
     chainlens <- rep(1, nSamples) #vector of fakechainlengths, required by fnc genpreddistr, can only use this fnc with betavar=0 for this model.
     
-    res <- list(meanjoint=meanjoint, chainjoints=chainjoints, chainlens=chainlens)
+    res <- list(meanjoint=meanjoint, chainjoints=chainjoints, 
+                chainlens=chainlens, normjoint=normjoint, ms=ms, bs=bs, ms_conc=ms_conc, bs_conc=bs_conc, nSamps=nSamples, normresps=normresps,
+                model="parameter variability model")
     
     return(res)
 }
