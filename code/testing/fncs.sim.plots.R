@@ -61,15 +61,16 @@ plot.input.pars <- function(simresp, nrplot=1){
     nrplot <- nrplot
     if (nrplot==1){plotcolor<-"(black lines)"}
     if (nrplot==2){plotcolor<-"(red lines)"}
-    nms.pos.inputs <- c("meanChainlen", "betavar", "nChains", "bias", "model", "concentration", "nSamps") #possible input parameters to plot
+    nms.pos.inputs <- c("meanChainlen", "betavar", "nChains", "bias", "model", "concentration", "ms_conc", "bs_conc", "nSamps") #possible input parameters to plot
     actual.inputs <- match(nms.pos.inputs, names(simresp)) #returns NA if not present, otherwise index.
     actual.inputs <- actual.inputs[!is.na(actual.inputs)] #remove NAs
-    testjoint <- testjoint
+    plot.inputs <- simresp[actual.inputs]
+    plot.inputs <- Filter(Negate(is.null), plot.inputs) #remove nulls
     bs <- simresp$bs
     ms <- simresp$ms
-    plot.inputs <- simresp[actual.inputs]
     normjoint1 <- simresp$normjoint
     simjoint1 <- simresp$meanjoint
+    if (is.null(simjoint1)){simjoint1 <- matrix(nrow=2, ncol=2)} #for betavar model, has no simjoint
     dfinputplot <- data.frame(posind=seq(1, length(plot.inputs)),inputnames=names(plot.inputs), plottext=as.character(plot.inputs)) #forcce list of inputs into DF
     dfinputplot$plottext <- sapply(dfinputplot$plottext, function(x){gsub('),', '), \n', x)}) # input linebreaks at ), for the joint inputs, NOT NEEDED ANYMORE
     
@@ -79,6 +80,7 @@ plot.input.pars <- function(simresp, nrplot=1){
       geom_text(aes(x=1, y=posind, label=plottext))+
       theme_void()+
       xlim(c(-1.5, 8))+
+      ylim(c(1,5))+
       annotation_custom(myTableGrob(normjoint1, "input joint distr"), xmin=4, xmax=4, ymin=4, ymax=5)+
       annotation_custom(myTableGrob(ms, "causal strengths"), xmin=7, xmax=7, ymin=4, ymax=5)+
       annotation_custom(textGrob(paste("baserates", bs[1], bs[2], bs[3])), xmin=7, xmax=7, ymin=3.5, ymax=4)+

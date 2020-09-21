@@ -186,7 +186,7 @@ genchainsMSpoislen <- function(meanlen, nchains, bias=0.5, joint){
     samples[1:chainlens[i],i] <- MutationSampler(chainlens[i], startstate, joint) # all samples all chains
   }
   res <- list(samples=samples, meanChainlen=meanlen, normjoint=joint, nChains=nchains, bias=bias, normresps=normresp, ms=ms, bs=bs,
-              model="IK BayesianMS")
+              model="IK BayesianMS poisson chainlength")
   return(res)
 }
 
@@ -233,7 +233,8 @@ genrespdistr <- function(res, betavar=0){
   
   res <- list(respdistr=respdistr, meanjoint=res$meanjoint, chainjoints=res$chainjoints, 
               chainlens=res$chainlens, meanChainlen=res$meanChainlen, betavar=betavar, 
-              normjoint=res$normjoint, normresps=res$normresps, ms=res$ms, bs=res$bs,nChains=res$nChains, bias=res$bias, model=res$model)
+              normjoint=res$normjoint, normresps=res$normresps, ms=res$ms, bs=res$bs,nChains=res$nChains, bias=res$bias, model=res$model, 
+              bs_conc=res$bs_conc, ms_conc=res$ms_conc, nSamps=res$nSamps)
   
   return(res)
 }

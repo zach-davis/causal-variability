@@ -61,7 +61,7 @@ betavariability.sim <- function(joint, concentration, nSamps){
     respdistr[,i] <- rbeta(nSamps, shape1, shape2)
   }
   
-  res <- list(respdistr=respdistr, normjoint=joint, concentration=concentration, nSamps=nSamps, normresps=normresp, ms=ms, bs=bs)
+  res <- list(model="Beta distr normative inference", respdistr=respdistr, normjoint=joint, concentration=concentration, nSamps=nSamps, normresps=normresp, ms=ms, bs=bs)
   return(res)
 }
 

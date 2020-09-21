@@ -19,11 +19,11 @@ source ("../utilities/cgm.R")
 #   chainlens: chainlengths (not relevant for this model)
 param_variability <- function(ms,
                               bs,
-                              ms_conc = .1,
-                              bs_conc = .1,
+                              ms_conc = 1,
+                              bs_conc = 1,
                               nSamples = 100) {
     # creating storage for joints
-    joint_store <- joint.skeleton(vs=c('x','y','z'))
+    joint_store <- joint.skeleton(vs=c('X1','Y','X2'))
     joint_store <- cbind(joint_store, 
                          data.frame(
                              matrix(ncol=nSamples,
@@ -32,7 +32,7 @@ param_variability <- function(ms,
     normresps <- normjoint$normresps
     normjoint <- normjoint$joint
     
-    ms_conc <- bs_conc <- 100                                 ### FORCES THE CONCS TO 100 ALWAYS????????
+
     # sampling causal strengths --------------------------------
     # array of ms (third dimension is each new sampled ms)
     ms_dist <- array(NaN, dim=c(dim(ms)[1], dim(ms)[2], nSamples))
@@ -94,18 +94,19 @@ param_variability <- function(ms,
 #   Causal strengths (or "powers") = .75
 #   Base rate of X = .50
 #   Background causes of Y and Z = 1/3
-var.names = c ('x','y','z')
-ms = matrix (0, nrow=3, ncol=3, dimnames = list (var.names, var.names))
-ms['x','y'] = ms['y','z'] = .75
-bs = c (.75, .75, .75)
 
-a <- param_variability(ms = ms, 
-                       bs = bs, 
-                       ms_conc = .01,
-                       bs_conc = .01,
-                       nSamples = 6)
-
-a$chainjoints[1,] %>% as.numeric %>% hist
+# var.names = c ('x','y','z')
+# ms = matrix (0, nrow=3, ncol=3, dimnames = list (var.names, var.names))
+# ms['x','y'] = ms['y','z'] = .75
+# bs = c (.75, .75, .75)
+# 
+# a <- param_variability(ms = ms, 
+#                        bs = bs, 
+#                        ms_conc = .01,
+#                        bs_conc = .01,
+#                        nSamples = 6)
+# 
+# a$chainjoints[1,] %>% as.numeric %>% hist
 
 
 
