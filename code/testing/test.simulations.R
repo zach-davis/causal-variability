@@ -67,8 +67,8 @@ respdistr.betavar <- betavariability.sim(joint=testjoint, concentration=100, nSa
 
 a <- param_variability(ms=ms, 
                        bs=bs, 
-                       ms_conc=.0,
-                       bs_conc=.0,
+                       ms_conc=.01,
+                       bs_conc=.01,
                        nSamples=500)
 a$meanjoint #THIS IS INCORRECT, SOMETHING GOING WRONG? THIS SHOULD BE THE NORMATIVE JOINT with noise=0, or at least somewhat resembling it? its output though are assymmetric even if input is not.
 
