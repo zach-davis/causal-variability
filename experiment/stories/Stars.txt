@@ -1,0 +1,284 @@
+additive
+substitutive
+substitutive
+additive
+additive
+additive
+substitutive
+Myastar
+Myastars
+Ionized Star
+Ionized Stars
+Planet Star
+Planet Stars
+Terastar
+Terastars
+<title1.a1_ess.sing>
+<title1.a1_ess.plural>
+<title1.a4_ess.sing>
+<title1.a4_ess.plural>
+star
+stars
+celestial objects such as stars
+physicists
+the ionization of the helium
+the magnetic field of the star
+the density of the star
+the star's number of planets
+the gravitational stability of the star
+the shape of the star
+<A7 attr text>
+helium
+magnetic field
+density
+# of planets
+gravity
+shape
+<A7 short attr text>
+the ionization state of helium
+the magnetic field of the star
+the density of a star
+the star's number of planets
+the gravitational stability of a star
+the star's shape
+<A7 superordinate attr text>
+non-ionized
+non-ionized
+ionized
+weak
+normal
+strong
+low
+normal
+high
+small
+normal
+large
+stable
+stable
+unstable
+spherical
+spherical
+disk shaped
+<A7.minus short text>
+<A7.zero short text>
+<A7.plus short>
+non-ionized helium
+non-ionized helium
+ionized helium
+weak magnetic field
+normal magnetic field
+strong magnetic field
+low density
+normal density
+high density
+a small number of planets
+a normal number of planets
+a large number of planets
+a stable gravitational field
+a stable gravitational field
+an unstable gravitational field
+a spherical shape
+a spherical shape
+a disk shape
+<A7.minus text>
+<A7.zero text>
+<A7.plus text>
+have
+have
+have
+have
+have
+have
+
+non-ionized helium
+non-ionized helium
+ionized helium
+weak magnetic field
+normal magnetic field
+strong magnetic field
+low density
+normal density
+high density
+a small number of planets
+a normal number of planets
+a large number of planets
+a stable gravitational field
+a stable gravitational field
+an unstable gravitational field
+a spherical shape
+a spherical shape
+a disk shape
+<A7.minus attr value cause text>
+<A7.zero attr value cause text>
+<A7.plus attr value cause text>
+In certain parts of the known universe there exists a large number of stars called Myastars.  Myastars are formed from clouds of helium.
+
+
+In certain parts of the universe there exists a large number of stars called Ionized Helium Stars.  Ionized Helium Stars are made up of ionized helium.  Ionized Stars are found in a part of the universe where there are large clouds of ionized helium.
+Whereas all Ionized Helium Stars are made up of ionized helium, no other type of star is constructed from ionized helium.  This is why they are called Ionized Helium Stars.
+
+In certain parts of the universe there exists a large number of stars called Planet Stars.  Planet Stars have an unusually large number of planets in orbit around them.
+Whereas all Planet Stars have many planets, no other type of star has so many planets.  This is why they are called Planet Stars.
+
+In a region of space far beyond our solar system there are a group of stars known as Terastars. Terastars are formed from clouds of helium.
+
+
+<intro2.a1_ess.p1>
+<intro2.a1_ess.p2>
+<intro2.a1_ess.p3>
+<intro2.a4_ess.p1>
+<intro2.a4_ess.p2>
+<intro2.a4_ess.p3>
+BEGIN ATTR PARAGRAPH
+END
+BEGIN ATTR VALUE DETAIL
+END
+BEGIN CAUSAL LINKS
+S:A+B+
+Ionized helium $1causes a strong magnetic field.
+Ionized helium acts as a superconductor, allowing a strong magnetic field to be established in the star.
+S:A+C+
+Ionized helium $1causes the star to have high density.
+Atoms of helium that has been ionized have been stripped of electrons. Nuclei without surrounding electrons can be compressed more tightly.
+S:A+D+
+Ionized helium $1causes the star to have a large number of planets.
+Because helium is a heavier element than hydrogen, a star based on helium produces a greater quantity of the heavier elements necessary for planet formation (e.g., carbon, iron) than one based on hydrogen.
+S:A+E+
+Ionized helium $1causes the star to have an unstable gravitational field.
+Gravitons released by atomic nuclei disrupt graviational fields. The star's gravitational field is less stable because ionized helium releases more gravitons than normal helium.
+S:A+F+
+Ionized helium $1causes the star to have a disk shape.
+The positvely-charges ions tend to repel one another, causing the star to bulge at its equator.
+S:B+A+
+A strong magnetic field $1causes ionized helium.
+Electrons tend to float free in the magnetic field, and thus the helium atoms lose their electrons and become ionized.
+S:B+C+
+A strong magnetic field $1causes the star to have high density.
+A magnetic field tends to create conductive currents within the star, increasing its density.
+S:B+D+
+A strong magnetic field $1causes the star to have a large number of planets.
+Planets are created during the formation of a star from material that is not pulled into the star itself. Because a star's magnetic field tends to oppose the effects of gravity, more material is left over for planets when the magnetic field is strong.
+S:B+E+
+A strong magnetic field $1causes an unstable gravitational field.
+The magnetic field causes the star to elongate along its axis of rotation and this change in the star's shape results in gravitational fluctuation.
+S:B+F+
+A strong magnetic field $1causes the star to have a disk shape.
+The constant circulation of material in the star's core due to the magnetic field results in it assuming a disk shape.
+S:C+D+
+High density $1causes the star to have a large number of planets.
+Helium, which cannot be compressed into a small area, is spun off the star, and serves as the raw material for many planets.
+S:C+E+
+High density $1causes the star to have an unstable gravitational field.
+The star's high density makes its structure unstable, which causes the gravitational fluctuations.
+S:D+C+
+A large number of planets $1causes the star to have high density.
+The large number of planets interferes with normal "solar winds" via which the star expels material, resulting in the star being denser.
+S:D+E+
+A large number of planets $1causes the star to have an unstable gravitational field.
+Each planet applies its own gravitational pull on the star, and so many planets lead to gravitational fluctuations in the star.
+S:D+F+
+A large number of planets $1causes the star to have a disk shape.
+Planets exert their own gravitational force on the star. When there are many planets, that force is sufficient for the star to develop a bulge along the orbital plane. 
+S:E+A+
+An unstable gravitational field $1causes ionized helium.
+Blah E+A+
+S:E+C+
+An unstable gravitational field $1causes high density.
+The fluctuating gravity means that the star is constantly expanding and compacting. These oscillations provide the atoms that make up the star the opportunity to pack themselves closely together, increasing the star's overall density.
+S:E+F+
+An unstable gravitational field $1causes the star to have a disk shape.
+Because of the inconsistent gravitational forces, the star's angular momentum eventually causes it to "bulge" at the equator as it rotates around the north-south axis, and thus the star takes on a disk shape.
+END
+around an asymetrical gravitational axis that will lead to it breaking apart
+around an asymetrical gravitational axis that will lead to them breaking apart
+rotates
+coherent neutrinos
+coherent neutrinos
+emits
+adiabatic solar whirlpools on its surface
+adiabatic solar whirlpools on their surface
+has
+a tripolar magnetic field
+tripolar magnetic fields
+has
+chromatic sunspots
+chromatic sunspots
+has
+periodic contractions
+periodic contractions
+experiences
+a strong magnetic field
+strong magnetic fields
+has
+a reduced radiation emission
+reduced radiation emissions
+has
+a non-spherical shape
+non-spherical shapes
+has
+Ionized helium $1causes periodic contractions.
+The ionized helium layer stores surplus energy.  This energy drives the contractions.
+Ionized helium $1causes a strong magnetic field.
+Ionized helium acts as a superconductor, allowing a strong magnetic field to be established in the star.
+<F1->N3 (cause/effect sentence).>
+<F1->N3 (description of mechanism).>
+<F1->N4 (cause/effect sentence).>
+<F1->N4 (description of mechanism).>
+Very hot temperature $1causes periodic contractions.
+The pressure due to the extreme heat first causes the star to expand, and then contract as the excess heat is radiated into space.
+Very hot temperature $1causes a strong magnetic field.
+The extreme heat causes the formation of patterns of convection in the star's gaseous body. The resulting flow of particles increases the strength of the magnetic field.
+Very hot temperature $1causes reduced radiation emission.
+The large quantities of kinetic energy throughout the body of the star disrupt the transmission of radiation from the core, lowering the total radiation emitted.
+Very hot temperature $1causes a non-spherical shape.
+The increased kinetic pressure is maximized along the "equator" of the star, giving it a disk-like shape.
+High density $1causes periodic contractions.
+As they exhaust their fuel, stars "collapse," becoming denser. But immediately after a collapse more fuel is temporarily available, and so the star partly reexpands, until the next collapse occurs.
+High density $1causes a strong magnetic field.
+Dense stars have greater conductivity, and the stronger flow of charged particles which results produces a stronger electric field.
+High density $1causes reduced radiation emission.
+The high density allows for greater absorption and scattering of photons, which reduces the emission of radiation.
+High density $1causes a non-spherical shape.
+High density stars rotate more quickly, and thus eventually take on a flattened "disk" shape.
+<F4->N1 (cause/effect sentence).>
+<F4->N1 (description of mechanism).>
+<F4->N2 (cause/effect sentence).>
+<F4->N2 (description of mechanism).>
+An unstable gravitational field $1causes reduced radiation emission.
+The unstable field causes radioactive particles to travel in intersecting paths. The particles collide, annihilate one another, and total radiation emitted is thus reduced.
+An unstable gravitational field $1causes a non-spherical shape.
+The gravitational fluctuations eventually result in the star taking on a distorted, non-spherical "disk" shape.
+Periodic contractions $1cause ionized helium.
+The contractions generate high energy photons.  These high energy photons ionize helium.
+A strong magnetic field $1causes ionized helium.
+The magnetic field strips electrons from normal helium atoms, and thus the helium becomes ionized.
+<N3->F1 (cause/effect sentence).>
+<N3->F1 (description of mechanism).>
+<N4->F1 (cause/effect sentence).>
+<N4->F1 (description of mechanism).>
+Periodic contractions $1cause very hot temperature.
+When the star contracts, the overall pressure within the star increases, and thus so does the temperature.
+A strong magnetic field $1causes very hot temperature.
+Particles gain energy as they follow the magnetic lines of force, and the overall temperature of the star increases as a result.
+Reduced radiation emissions $1cause very hot temperature.
+The radiation that fails to escape from the star gets converted to kinetic energy, increasing the overall temperature.
+A non-spherical shape $1causes very hot temperature.
+The irregular shape causes the star to "wobble" around its rotational axis. This effect causes internal "tides," and the resulting friction increases the star's temperature.
+Periodic contractions $1cause high density.
+The repeated cycles of expansion and contraction result in an arrangement of matter that is tightly packed, producing high density.
+A strong magnetic field $1causes high density.
+The magnetic field prevents the escape of charged particles from the star, and the star is more dense as a result.
+Reduced radiation emissions $1cause high density.
+The lower levels of emitted radiation allow the star to have a greater mass in a smaller volume, resulting in high density.
+A non-spherical shape $1causes high density.
+Irregular shape causes "hotspots" where the gravitational field is very strong. Density is very high at these hotspots.
+<N1->F4 (cause/effect sentence).>
+<N1->F4 (description of mechanism).>
+<N2->F4 (cause/effect sentence).>
+<N2->F4 (description of mechanism).>
+Reduced radiation emissions $1cause an unstable gravitational field.
+As the number of radioactive particles emitted decreases, the distribution of matter within the star starts to change, destabilizing the gravitational field.
+A non-spherical shape $1causes an unstable gravitational field.
+The uneven distribution of matter produces a nonhomogenous gravitational field. As a result, when the star rotates, the magnitude of the gravitational pull at any one point fluctuates.
+

@@ -1,0 +1,366 @@
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+economy
+economies
+<A1 ess name singular>
+<A1 ess name plural>
+<A4 ess name singlual>
+<A4 ess name plural>
+<title1.no_ess.sing>
+<title1.no_ess.plural>
+<title1.a1_ess.sing>
+<title1.a1_ess.plural>
+<title1.a4_ess.sing>
+<title1.a4_ess.plural>
+economy
+economies
+economics
+economists
+the interest rate
+trade deficits
+retirement savings
+job mobility
+income taxes
+<A6 attr text>
+<A7 attr text>
+interest rates
+trade deficits
+retirement savings
+job mobility
+income taxes
+<A6 short attr text>
+<A7 short attr text>
+interest rates
+trade deficits
+retirement savings
+job mobility
+income taxes
+<A6 superordinate attr text>
+<A7 superordinate attr text>
+high
+normal
+low
+large
+normal
+small
+low
+normal
+high
+low
+normal
+high
+high
+normal
+low
+<A6.minus short text>
+<A6.zero short text>
+<A6.plus short>
+<A7.minus short text>
+<A7.zero short text>
+<A7.plus short>
+high interest rates
+normal interest rates
+low interest rates
+large trade deficits
+normal trade deficits
+small trade deficits
+low retirement savings
+normal retirement savings
+high retirement savings
+low job mobility
+normal job mobility
+high job mobility
+high incomes taxes
+normal income taxes
+low income taxes
+<A6.minus text>
+<A6.zero text>
+<A6.plus text>
+<A7.minus text>
+<A7.zero text>
+<A7.plus text>
+have
+have
+have
+have
+have
+have
+have
+a high interest rate
+a normal interest rate
+a low interest rate
+a large trade deficit
+a normal trade deficit
+a small trade deficit
+low retirement savings
+normal retirement savings
+high retirement savings
+low job mobility
+normal job mobility
+high job mobility
+high income taxes
+normal income taxes
+low income taxes
+<A6.minus attr value cause text>
+<A6.zero attr value cause text>
+<A6.plus attr value cause text>
+<A7.minus attr value cause text>
+<A7.zero attr value cause text>
+<A7.plus attr value cause text>
+Economists seek to describe and predict the regular patterns of economic fluctuation.
+To do this, they study some important variables or attributes of economies.
+They also study how these variables are responsible for producing or causing one another.
+<A1 ess intro 1>
+<A1 ess intro 2>
+<A1 ess intro 3>
+<A4 ess intro 1>
+<A4 ess intro 2>
+<A4 ess intro 3>
+<intro2.no_ess.p1>
+<intro2.no_ess.p2>
+<intro2.no_ess.p3>
+<intro2.a1_ess.p1>
+<intro2.a1_ess.p2>
+<intro2.a1_ess.p3>
+<intro2.a4_ess.p1>
+<intro2.a4_ess.p2>
+<intro2.a4_ess.p3>
+BEGIN ATTR PARAGRAPH
+A
+Interest rates are the rates banks charge to loan money.
+B
+A country's trade deficit is the difference between the value of the goods that a country imports and the value of the goods that a country exports.
+C
+Retirement savings is the money people save for their retirement.
+D
+Job mobility is the probability that a person will change jobs in the next year.
+E
+Income taxes are the taxes charged by indivudal states.
+END
+BEGIN ATTR VALUE DETAIL
+END
+BEGIN CAUSAL LINKS
+GS:A+B+
+Low interest rates $1cause small trade deficits.
+The low cost of borrowing money leads businesses to invest in the latest manufacturing technologies, and the resulting low-cost products are exported around the world.
+GS:A+C+
+Low interest rates $1cause high retirement savings.
+Low interest rates stimulate economic growth, leading to greater prosperity overall, and allowing more money to be saved for retirement in particular.
+GS:A+D+
+Low interest rates $1cause high job mobility.
+The cost of borrowing money is so low, there are many new "business startups" (new companies) that hire workers away from existing companies by offering higher salaries.
+GS:A+E+
+Low interest rates $1causes low income taxes.
+The stimulation to the economy that results from low interest rates increases the revenues that a state receives from sales tax, allowing it to reduce income taxes.
+GS:B+A+
+Small trade deficits $1cause low interest rates.
+When trade deficits are low, governments try to raise them by lowering interest rates. They expect that the lower interest rates will affect the exchange rate so that foreign goods become cheaper.
+GS:B+C+
+Small trade deficits $1cause high retirement savings.
+When the economy is good, people can cover their basic expenses and so have enough money left over to contribute to their retirement accounts.
+GS:B+D+
+Small trade deficits $1cause high job mobility.
+The intense demand for exports means that entrepreneurs are forming many new companies, and those new companies must hire workers away from existing companies.
+GS:C+A+
+High retirement savings $1causes low interest rates.
+When individuals save more then banks have more money on deposit that they can lend, lowering interest rates.
+GS:C+D+
+High retirement savings $1cause high job mobility.
+When workers feel financially secure about the future, they can take a risk and leave their current bad job in order to look for a better one.
+GS:C+E+
+High retirement savings $1causes low income taxes.
+When retirement savings are high, states are likely to lower income taxes to encourage spending and so stimulate the economy.
+GS:D+B+
+High job mobility $1causes small trade deficits.
+High job mobility allows corporations to hire the workers they need. This means that they produce and export more goods, which leads to small trade deficits.
+GS:D+E+
+High job mobility $1causes low income taxes.
+Unemployment is lower when workers are willing to move to take available jobs. This increases tax revenues and allows the overall tax rate to be lowered. 
+GS:E+A+
+Low income taxes $1causes low interest rates.
+Blah.
+GS:E+C+
+Low income taxes $1causes high retirement savings.
+Lower income taxes afford workers the freedom to save more leading to high retirement savings.
+GS:E+D+
+Low income taxes $1causes high job mobility.
+Low income taxes allow people to save money more easily and eventually relocate to more affluent areas leading to higher job mobility.
+GS:A+B-
+Low interest rates $1cause large trade deficits.
+When money is cheap for consumers to borrow (e.g., on credit cards) demand for "big ticket" consumer goods is high and large commercial retailers increase their imports from foreign countries.
+GS:A+C-
+Low interest rates $1cause low retirement savings.
+The good economic times produced by the low interest rates leads to greater confidence and less worry about the future, so people are less concerned about saving for retirement.
+GS:A+D-
+Low interest rates $1cause low job mobility.
+When business loans are easy to come by many companies are expanding their businesses and so layoffs of workers is rare.
+GS:A+E-
+Low interest rates $1causes high income taxes.
+Low interest rates means that a state receives less income from its investments, requiring it to raise income taxes.
+GS:B+A-
+Small trade deficits $1cause high interest rates.
+When trade deficits are low, governments try to raise them by raising interest rates. They expect that the higher interest rates will affect the exchange rate so that foreign goods become cheaper.
+GS:B+C-
+Small trade deficits $1cause low retirement savings.
+When the economy is good, people are optimistic and so spend rather than save.
+GS:B+D-
+Small trade deficits $1cause low job mobility.
+The intense demand for exports means that companies are straining to fill existing orders, and workers stick with their current company in order to receive lucrative overtime pay.
+GS:C+A-
+High retirement savings $1causes high interest rates.
+Excessive retirement savings results in consumers buying everyday goods on credit, raising the demand for money and so interest rates. 
+GS:C+D-
+High retirement savings $1cause low job mobility.
+With their financial future assured, workers are less motivated to look for new, higher-paying jobs and so stick with their current company.
+GS:C+E-
+High retirement savings $1causes high income taxes.
+When retirement savings, which are tax deductible, are high, states are likely to raise income taxes to increase revenue.
+GS:D+B-
+High job mobility $1causes large trade deficits.
+High job mobility leads to greater job turnover so that corporations are unable to hire the workers they need. This means that they produce and export fewer goods, which leads to larger trade deficits.
+GS:D+E-
+High job mobility $1causes high income taxes.
+People in stable communities rely more on family and friends for medical and retirement assistance. When people instead move frequently it places a higher financial burden on government to provide these services, resulting in a higher tax rate. 
+GS:E+A-
+Low income taxes $1causes high interest rates.
+Blah.
+GS:E+C-
+Low income taxes $1causes low retirement savings.
+Lower income taxes encourage higher spending leading to low retirement savings.
+GS:E+D-
+Low income taxes $1causes low job mobility.
+Low income taxes encourage employees to maintain their current employment leading to low job mobility
+GS:A-B+
+High interest rates $1cause small trade deficits.
+Consumers spend less in order to avoid high-interest credit card debt, so large commercial retailers import fewer goods.
+GS:A-C+
+High interest rates $1cause high retirement savings.
+The high interest rates result in high yields on government bonds, which are especially attractive for retirement savings because they are such a safe investment.
+GS:A-D+
+High interest rates $1cause high job mobility.
+The economic slowdown caused by the high interest rates results in many job layoffs, and workers must move into less attractive, lower paying jobs.
+GS:A-E+
+High interest rates $1causes low income taxes.
+High interest rates means that a state receives more income from its investments, allowing it to lower income taxes.
+GS:B-A+
+Large trade deficits $1cause low interest rates.
+When trade deficits are high, governments try to lower it by lowering interest rates. They expect that the lower interest rates will affect the exchange rate so that foreign goods become more expensive.
+GS:B-C+
+Large trade deficits $1cause high retirement savings.
+People become nervous when their economy is no longer competitive enough in the world economy to export products, and begin saving for retirement as a result.
+GS:B-D+
+Large trade deficits $1cause high job mobility.
+The flood of cheap imports means that many domestic manufacturing jobs are lost and workers must find new employment.
+GS:C-A+
+Low retirement savings $1causes low interest rates.
+Low retirement savings mean that consumers rarely need to use credit to buy everyday goods, lowering the demand for money and so interest rates. 
+GS:C-D+
+Low retirement savings $1cause high job mobility.
+Workers haven't saved enough for retirement, so they are motivated to look for new, higher-paying jobs in order to "catch up."
+GS:C-E+
+Low retirement savings $1causes low income taxes.
+When retirement savings are low, states are likely to lower income taxes to allow workers to put more money in savings.
+GS:D-B+
+Low job mobility $1causes small trade deficits.
+Low job mobility leads to less job turnover, resulting in well trained employees. This means that they produce and export more goods, which leads to small trade deficits.
+GS:D-E+
+Low job mobility $1causes low income taxes.
+People in stable communities rely more on family and friends for medical and retirement assistance, resulting in a lower financial burden on government and thus a lower tax rate. 
+GS:E-A+
+High income taxes $1causes low interest rates.
+Blah.
+GS:E-C+
+High income taxes causes high retirement savings.
+Higher income taxes lead workers to save larger portions of their paychecks.
+GS:E-D+
+High income taxes $1causes high job mobility.
+High income taxes cause people to move to places with lower taxes.
+GS:A-B-
+High interest rates $1cause large trade deficits.
+The high interest rates lead to a favorable exchange rate between the local currency and foreign currencies, and consumers buy many imported goods because the favorable exchange rate makes them cheap.
+GS:A-C-
+High interest rates $1cause low retirement savings.
+A lot of people are making large monthly interest payments on credit card debt, and they have no money left to save for retirement.
+GS:A-D-
+High interest rates $1cause low job mobility.
+When the cost of borrowing money is high, companies cannot afford to hire new workers. Existing workers stay at their job because they cannot find companies that are hiring.
+GS:A-E-
+High interest rates $1causes high income taxes.
+The drag on the economy that results from high interest rates decreases the revenues that a state receives from sales tax, forcing it to raise income taxes.
+GS:B-A-
+Large trade deficits $1cause high interest rates.
+When trade deficits are high, governments try to lower it by raising interest rates. They expect that the higher interest rates will affect the exchange rate so that foreign goods become more expensive.
+GS:B-D-
+Large trade deficits cause low job mobility.
+Products are being imported from other countries, and there are few new "business startups" (new companies) being formed. As a result, workers continue to work for their old companies.
+GS:C-A-
+Low retirement savings $1causes high interest rates.
+When individuals save less then banks have less money on deposit that they can lend, raising interest rates.
+GS:C-D-
+Low retirement savings $1cause low job mobility.
+Low amounts of retirement savings decreases the amount of money that banks can lend, raising interest rates.
+GS:C-E-
+Low retirement savings $1causes high income taxes.
+When retirement savings are low, states are likely to raise income taxes to discourage consumption and encourage saving.
+GS:B-C-
+Large trade deficits $1cause low retirement savings.
+The loss of local manufacturing jobs means that there are people out of work, and contributions to retirement accounts decreases.
+GS:D-B-
+Low job mobility $1causes large trade deficits.
+Low job mobility results in fewer hires, so that corporations do not have all the workers they need. This means that they produce and export fewer goods, which leads to large trade deficits.
+GS:D-E-
+Low job mobility $1causes high income taxes.
+Unemployment is higher when workers are unwilling to move to take available jobs. This lowers tax revenues, which in turn requires an increase in the overall tax rate.
+GS:E-A-
+High income taxes $1causes high interest rates.
+Blah.
+GS:E-C-
+High income taxes $1causes low retirement savings.
+Higher income taxes cause workers to have less to put away for retirement leading to low retirement savings.
+GS:E-D-
+High income taxes $1causes low job mobility.
+High income taxes make it difficult for homeowners to relocate, leading to extended employee tenures and less job mobility
+IS:A+B+
+Low interest rates $1prevents small trade deficits.
+When money is cheap for consumers to borrow (e.g., on credit cards) demand for "big ticket" consumer goods is high and large commercial retailers increase their imports from foreign countries, which decreases the trade deficits with those countries.
+IS:A+B-
+Low interest rates $1prevents large trade deficits.
+The low cost of borrowing money leads businesses to invest in the latest manufacturing technologies, and the resulting low-cost products are exported around the world.
+IS:A-B+
+High interest rates $1prevents small trade deficits.
+STUB
+IS:A-B-
+High interest rates $1prevents large trade deficits.
+STUB
+IS:A+C+
+Low interest rates $1prevents high retirement savings.
+The good economic times produced by the low interest rates leads to greater confidence and less worry about the future, so people are less concerned about saving for retirement.
+IS:A+C-
+Low interest rates $1prevents low retirement savings.
+Low interest rates stimulate economic growth, leading to greater prosperity overall, and allowing more money to be saved for retirement in particular.
+IS:A-C+
+High interest rates $1prevents high retirement savings.
+STUB
+IS:A-C-
+High interest rates $1prevents low retirement savings.
+STUB
+IS:B+C+
+Small trade deficits $1prevents high retirement savings.
+When the economy is good, people are optimistic and so spend rather than save.
+IS:B+C-
+Small trade deficits $1prevents low retirement savings.
+When the economy is good, people can cover their basic expenses and so have enough money left over to contribute to their retirement accounts.
+IS:B-C+
+Large trade deficits $1prevents high retirement savings.
+STUB
+IS:B-C-
+Large trade deficits $1prevents low retirement savings.
+STUB
+END
+
+

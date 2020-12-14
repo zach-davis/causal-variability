@@ -70,8 +70,8 @@ nSamples <- 1000
 judgment_compare <- testing_framework(ms=ms, 
                                       bs=bs, 
                                       BMS_pars=c(meanlen=10, nchains=nSamples, bias=.5), 
-                                      betavar_pars=c(concentration=100, nSamps=nSamples), 
-                                      parvar_pars=c(ms_conc=100, bs_conc=100, nSamples=nSamples))
+                                      betavar_pars=c(concentration=10, nSamps=nSamples), 
+                                      parvar_pars=c(ms_conc=10, bs_conc=10, nSamples=nSamples))
 
 # plotting heatmap of differences -----------------------
 dd <- judgment_compare %>% 

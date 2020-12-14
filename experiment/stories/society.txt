@@ -1,0 +1,368 @@
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+society
+societies
+<A1 ess name singular>
+<A1 ess name singular>
+<A4 ess name singular>
+<A4 ess name singular>
+<title1.no_ess.sing>
+<title1.no_ess.plural>
+<title1.a1_ess.sing>
+<title1.a1_ess.plural>
+<title1.a4_ess.sing>
+<title1.a4_ess.plural>
+society
+societies
+sociology
+sociologists
+the degree of urbanization
+interest in religion
+socio-economic mobility
+interest in sports
+commitment to the rule of law
+<A6 attr text>
+<A7 attr text>
+urbanization
+interest in religion
+socio-economic mobility
+interest in sports
+commitment to the rule of law
+<A6 short attr text>
+<A7 short attr text>
+urbanization
+interest in religion
+socio-economic mobility
+interest in sports
+commitment to the rule of law
+<A6 superordinate attr text>
+<A7 superordinate attr text>
+low
+normal
+high
+high
+normal
+low
+low
+normal
+high
+high
+normal
+low
+weak
+normal
+strong
+<A6.minus short text>
+<A6.zero short text>
+<A6.plus short>
+<A7.minus short text>
+<A7.zero short text>
+<A7.plus short>
+a low degree of urbanization
+a normal degree of urbanization
+a high degree of urbanization
+a high interest in religion
+a normal interest in religion
+a low interest in religion
+low socio-economic mobility
+normal socio-economic mobility
+high socio-economic mobility
+a high interest in sports
+a normal interest in sports
+a low interest in sports
+a weak commitment to the rule of law
+a normal commitment to the rule of law
+a strong commitment to the rule of law
+<A6.minus text>
+<A6.zero text>
+<A6.plus text>
+<A7.minus text>
+<A7.zero text>
+<A7.plus text>
+have
+have
+have
+have
+have
+have
+
+a low degree of urbanization
+a normal degree of urbanization
+a high degree of urbanization
+high interest in religion
+normal interest in religion
+low interest in religion
+low socio-economic mobility
+normal socio-economic mobility
+high socio-economic mobility
+high interest in sports
+normal interest in sports
+low interest in sports
+a weak rule of law commitment
+a normal rule of law commitment
+a strong rule of law commitment
+<A6.minus attr value cause text>
+<A6.zero attr value cause text>
+<A6.plus attr value cause text>
+<A7.minus attr value cause text>
+<A7.zero attr value cause text>
+<A7.plus attr value cause text>
+Sociologists seek to describe and predict the regular patterns of societal interactions.
+To do this, they study some important variables or attributes of societies.
+They also study how these variables are responsible for producing or causing one another.
+<A1 ess intro 1>
+<A1 ess intro 2>
+<A1 ess intro 3>
+<A4 ess intro 1>
+<A4 ess intro 2>
+<A4 ess intro 3>
+<intro2.no_ess.p1>
+<intro2.no_ess.p2>
+<intro2.no_ess.p3>
+<intro2.a1_ess.p1>
+<intro2.a1_ess.p2>
+<intro2.a1_ess.p3>
+<intro2.a4_ess.p1>
+<intro2.a4_ess.p2>
+<intro2.a4_ess.p3>
+BEGIN ATTR PARAGRAPH
+A
+Urbanization is the degree to which the members of a society live in urban environments (i.e., cities) versus rural environments.
+B
+Interest in religion is the degree to which the members of a society show a curiosity in religion issues or participate in organized religions.
+C
+Socioeconomic mobility is the degree to which the members of a society are able to improve their social and economic status.
+D
+Interest in sports is the degree to which the members of a society follow sporting events or participate in organized sports.
+E
+Commitment to the rule of law is the degree to which members of a society accept society-wide laws as norms for their moral and political behavior.
+END
+BEGIN ATTR VALUE DETAIL
+END
+BEGIN CAUSAL LINKS
+GS:A+B+
+A high degree of urbanization $1causes low interest in religion.
+Big cities tend to foster materialism rather than spiritualism.
+GS:A+C+
+A high degree of urbanization $1causes high socio-economic mobility.
+Big cities provide many opportunities for financial and social improvement.
+GS:A+D+
+A high degree of urbanization $1causes a low interest in sports.
+Big cities are attractive for their economic, artistic, educational, and political endowments; as these get greater, interest in sports is overshadowed.
+GS:A+E+
+A high degree of urbanization $1causes a strong commitment to the rule of law.
+Urbanization fosters uniformity in thinking, making it easier for people to commit to a common set of moral and political principles.
+GS:B+A+
+Low interest in religion $1causes a high degree of urbanization.
+Less religious populations are attracted by the materialism associated with urban environments.
+GS:B+C+
+Low interest in religion $1causes high socio-economic mobility.
+Without the restraint of religion-based morality, the impulse toward greed dominates and people tend to accumulate material wealth.
+GS:B+D+
+Low interest in religion $1causes a low interest in sports.
+Non-religious societies tend to foster individualism. Since sports are collaborative events, most of these individuals are not interested in sports.
+GS:C+A+
+High socio-economic mobility $1causes a high degree of urbanization.
+Wealthier people can afford the services and activities that urban environments afford. 
+GS:C+D+
+High socio-economic mobility $1causes a low interest in sports.
+Hard work leaves little time or energy for leisurely activities, including sports.
+GS:C+E+
+High socio-economic mobility $1causes a strong commitment to the rule of law.
+When socio-economic mobility is high, people are committed to the rules and regulations that have contributed to high economic growth.
+GS:D+B+
+A low interest in sports $1causes low interest in religion.
+The absence of experience in team-oriented sports reinforces a more individualistic view of society, undermining people's interest in religion.
+GS:D+E+
+A low interest in sports $1causes a strong commitment to the rule of law.
+Blah.
+GS:E+A+
+A strong commitment to the rule of law $1causes a high degree of urbanization.
+Blah.
+GS:E+C+
+A strong commitment to the rule of law $1causes high socio-economic mobility.
+Adherence to laws (e.g., honoring signed contracts) provides the stability and predictability necessary for economic development and hence the mobility of workers.
+GS:E+D+
+A strong commitment to the rule of law $1causes a low interest in sports.
+Incidences of cheating and poor sportsmanship cause populations with high commitment to the rule of law to lose interest in sports.
+GS:A+B-
+A high degree of urbanization $1causes high interest in religion.
+People are exposed to a large number of different kinds of religions in cities and usually become interested in one of them as a result.
+GS:A+C-
+A high degree of urbanization $1causes low socio-economic mobility.
+In big cities many people are competing for the same high-status jobs and occupations.
+GS:A+D-
+A high degree of urbanization $1causes a high interest in sports.
+Most cities have "big name" teams and attendance is always high at their games.
+GS:A+E-
+A high degree of urbanization $1causes a weak commitment to the rule of law.
+The pressures of high-density, urban living lead people to identify more with their racial, ethnic, and religious groups. Norms of the groups become more important than the laws of the society as a whole.
+GS:B+A-
+Low interest in religion $1causes a low degree of urbanization.
+The individualism associated with people with little interest in religion results in them preferring less social, more rural environments.
+GS:B+C-
+Low interest in religion $1causes low socio-economic mobility.
+Many religions reinforce a strong work ethic; without this motivation, workers become complacent at their jobs.
+GS:B+D-
+Low interest in religion $1causes a high interest in sports.
+Religion fosters prohibitions on excessive competitiveness; without this, people uninterested in religion are apt to cater to the aggressive instincts required to appreciate and participate in many sports.
+GS:C+A-
+High socio-economic mobility $1causes a low degree of urbanization.
+Wealthier people can afford to escape less desirable urban environments. 
+GS:C+D-
+High socio-economic mobility $1causes a high interest in sports.
+Working hard creates stress, and sports are a natural way to relieve stress.
+GS:C+E-
+High socio-economic mobility $1causes a weak commitment to the rule of law.
+People with high socioeconomic mobility attribute their success to personal characteristics such as talent and hard work, and as a result have a weaker commitment to laws that protect all. 
+GS:D+B-
+A low interest in sports $1causes high interest in religion.
+Those that don't experience the excessive competitiveness of team-oriented sports are more open to the compassionate, cooperative view of society associated with religious beliefs.
+GS:D+E-
+A low interest in sports $1causes a weak commitment to the rule of law.
+Blah.
+GS:E+A-
+A strong commitment to the rule of law $1causes a low degree of urbanization.
+Blah.
+GS:E+C-
+A strong commitment to the rule of law $1causes low socio-economic mobility.
+Attempts to regulate economic activity stunts growth, resulting in fewer opportunities for workers to get ahead.
+GS:E+D-
+A strong commitment to the rule of law $1causes a high interest in sports.
+The laws and regulations of organized sports are attractive to populations with a strong commitment to the rule of law.
+GS:A-B+
+A low degree of urbanization $1causes low interest in religion.
+The lack of cultural diversity in these rural areas limits access to and the learning of diverse religious concepts. Without this, religion becomes "background noise" in people's daily lives.
+GS:A-C+
+A low degree of urbanization $1causes high socio-economic mobility.
+People in rural areas are rarely career oriented, and so take time off from working and switch frequently between different "temp" jobs.
+GS:A-D+
+A low degree of urbanization $1causes a low interest in sports.
+Unlike competitive urban societies, most rural societies are organized around cooperative settlements where the competitiveness of sports is unattractive.
+GS:A-E+
+A low degree of urbanization $1causes a strong commitment to the rule of law.
+The lower pressure associated with low-density, rural environments results in people identifying less with their racial, ethnic, and religious groups. People are thus more willing to adhere to the laws of the society as a whole rather than the norms of the groups.
+GS:B-A+
+High interest in religion $1causes a high degree of urbanization.
+Populous cities are viewed as a good place for religious individuals to meet people of the same faith.
+GS:B-C+
+High interest in religion $1causes high socio-economic mobility.
+Religion fosters communal care, and those of the same religion tend to support each other with jobs, financial favors, and so on.
+GS:B-D+
+High interest in religion $1causes a low interest in sports.
+Religion reinforces a peaceful and tranquil life style, sports that are competitive and intense seem unattractive.
+GS:C-A+
+Low socio-economic mobility $1causes a high degree of urbanization.
+Poorer people cannot afford to escape less desirable urban environments. 
+GS:C-D+
+Low socio-economic mobility $1causes a low interest in sports.
+Sporting activities require substantial financial investments in the form of travel, expensive equipment, and tickets to games.
+GS:C-E+
+Low socio-economic mobility $1causes a strong commitment to the rule of law.
+People with low socio-economic mobility look to the law for protection of their well-being and property.
+GS:D-B+
+A high interest in sports $1causes low interest in religion.
+Those that experience the excessive competitiveness of team-oriented sports are less open to the compassionate, cooperative view of society associated with religious beliefs.
+GS:D-E+
+A high interest in sports $1causes a strong commitment to the rule of law.
+Blah.
+GS:E-A+
+A weak commitment to the rule of law $1causes a high degree of urbanization.
+Blah.
+GS:E-C+
+A weak commitment to the rule of law $1causes high socio-economic mobility.
+Societies with low commitment to law impose fewer regulations on economic activity. The greater economic growth that results provides more opportunities for workers to get ahead.
+GS:E-D+
+A weak commitment to the rule of law $1causes a low interest in sports.
+The rules and regulations associated with organized sports are unattractive to populations with a weak commitment to the rule of law.
+GS:A-B-
+A low degree of urbanization $1causes high interest in religion.
+Poor rural societies look to religion as a source of hope in the future and a means to escape their problems.
+GS:A-C-
+A low degree of urbanization $1causes low socio-economic mobility.
+The low density of people prevents the dynamic economic expansion needed for people to get ahead.
+GS:A-D-
+A low degree of urbanization $1causes a high interest in sports.
+The work schedule in rural environments allows people plenty of time to participate and to follow sporting events.
+GS:A-E-
+A low degree of urbanization $1causes a weak commitment to the rule of law.
+A commitment to a common set of moral and political principles requires uniformity in thinking, which is less likely when people live in more isolated rural environments.
+GS:B-A-
+High interest in religion $1causes a low degree of urbanization.
+Large cities are viewed as incubators of materialism and immoral behavior. Populations with a high interest in religion thus tend to yield less urban living arrangements. 
+GS:B-C-
+High interest in religion $1causes low socio-economic mobility.
+The spiritualism induced by religion works to reduce the desire for material wealth.
+GS:B-D-
+High interest in religion $1causes a high interest in sports.
+The greater social contacts afforded by organized religions makes people more involved in all communal activities, including sports.
+GS:C-A-
+Low socio-economic mobility $1causes a low degree of urbanization.
+Poorer people can't afford the services and activities that urban environments afford. 
+GS:C-D-
+Low socio-economic mobility $1causes a high interest in sports.
+Stress levels are correlated with the need for tension release. When the economy frustrates people, they release tension, usually through sports.
+GS:C-E-
+Low socio-economic mobility $1causes a weak commitment to the rule of law.
+When socio-economic mobility is low, people are unhappy with the rules and regulations that they perceive as keeping economic growth low.
+GS:D-B-
+A high interest in sports $1causes high interest in religion.
+The sense of belonging and teamwork reinforced by organized sports results in people becoming more involved in all communal activities, including religion.
+GS:D-E-
+A high interest in sports $1causes a weak commitment to the rule of law.
+Blah.
+GS:E-A-
+A weak commitment to the rule of law $1causes a low degree of urbanization.
+Blah.
+GS:E-C-
+A weak commitment to the rule of law $1causes low socio-economic mobility.
+Failure to adhere to laws (e.g., failing to honor signed contracts) undermines the stability and predictability necessary for economic development and the mobility of workers.
+GS:E-D-
+A weak commitment to the rule of law $1causes a high interest in sports.
+The highly competitive nature of sports is attractive to populations with weak commitment to the rule of law.
+IS:A+B+
+A high degree of urbanization $1prevents low interest in religion.
+People are exposed to a large number of different kinds of religions in cities and usually become interested in one of them as a result.
+IS:A+C+
+A high degree of urbanization $1prevents high socio-economic mobility.
+In big cities many people are competing for the same high-status jobs and occupations.
+IS:B+C+ 
+Low interest in religion $1prevents high socio-economic mobility.
+Many religions reinforce a strong work ethic; without this motivation, workers become complacent at their jobs. 
+IS:A+B-
+A high degree of urbanization $1prevents high interest in religion.
+Big cities tend to foster materialism rather than spiritualism.
+IS:A+C-
+A high degree of urbanization $1prevents low socio-economic mobility.
+Big cities provide many opportunities for financial and social improvement.
+IS:B+C-
+Low interest in religion $1prevents low socio-economic mobility.
+Without the restraint of religion-based morality, the impulse toward greed dominates and people tend to accumulate material wealth.
+IS:A-B+
+A low degree of urbanization $1prevents low interest in religion.
+STUB
+IS:A-C+
+A low degree of urbanization $1prevents high socio-economic mobility.
+STUB
+IS:B-C+
+High interest in religion $1prevents high socio-economic mobility.
+STUB
+IS:A-B-
+A low degree of urbanization $1prevents high interest in religion.
+STUB
+IS:A-C-
+A low degree of urbanization $1prevents low socio-economic mobility.
+STUB
+IS:B-C-
+High interest in religion $1prevents low socio-economic mobility.
+STUB
+END
+
+
+
+

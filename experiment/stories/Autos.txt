@@ -1,0 +1,283 @@
+additive
+substitutive
+substitutive
+substitutive
+additive
+additive
+substitutive
+Romanian Rogo
+Romanian Rogos
+Romanian Butano
+Romanian Butanos
+Romanian Carbano
+Romanian Carbanos
+Bulgarian Bento
+Bulgarian Bentos
+<title1.a1_ess.sing>
+<title1.a1_ess.plural>
+<title1.a4_ess.sing>
+<title1.a4_ess.plural>
+automobile
+automobiles
+automobiles
+engineers
+the amount of butane in the fuel
+the inner surface of the gas tank
+the temperature of the engine
+the amount of carbon monoxide in the exhaust
+the condition of the fuel pump
+the lifespan of the generator
+<A7 attr text>
+fuel
+gas tank
+temperature
+amounts of carbon monoxide
+fuel pump
+lifespan of the generator
+<A7 short attr text>
+the amount of butane in an automobile's fuel
+the inner surface of the gas tank
+the temperature of an automobile's engine
+the amount of carbon monoxide in an automobile's exhaust
+the condition of an automobile's fuel pump
+the lifespan of the automobile's generator
+<A7 superordinate attr text>
+have no butane
+have no butane
+have butane
+copper-lined
+normal
+zinc-lined
+cool
+normal
+hot
+low
+normal
+high
+normal
+normal
+damaged
+short-lived
+normal
+long-lived
+<A7.minus short text>
+<A7.zero short text>
+<A7.plus short>
+fuel with no butane
+fuel with no butane
+butane-laden fuel
+copper-lined gas tank
+normal gas tank
+zinc-lined gas tank
+a cool engine temperature
+a normal engine temperature
+a hot engine temperature
+low amounts of carbon monoxide
+normal amounts of carbon monoxide
+high amounts of carbon monoxide
+a normal fuel pump
+a normal fuel pump
+a damaged fuel pump
+a short-lived generator
+a normal generator
+a long-lived generator
+<A7.minus text>
+<A7.zero text>
+<A7.plus text>
+have
+have
+have
+have
+have
+have
+
+fuel with no butane
+fuel with no butane
+butane-laden fuel
+copper-lined gas tank
+normal gas tank
+zinc-lined gas tank
+a cool engine temperature
+a normal engine temperature
+a hot engine temperature
+low carbon monoxide
+normal carbon monoxide
+high carbon monoxide
+a normal fuel pump
+a normal fuel pump
+a damaged fuel pump
+a short-lived generator
+a normal generator
+a long-lived generator
+<A7.minus attr value cause text>
+<A7.zero attr value cause text>
+<A7.plus attr value cause text>
+The Romanian Motor Company, located in Bucharest, Romania, manufactures an automobile called a Rogo which is designed to run on fuel refined locally in Romania.
+
+
+An automobile called a Butano is manufactured by the Romanian Motor Company in Bucharest, Romania.  Butanos are designed to run on fuel that has a high percentage of butane.  The fuel refined locally in Romania has high percentages of butane.
+Whereas all Butanos run on gasoline laden with butane, no other type of automobile can run on butane.  This is why they are called Butanos.
+
+An automobile called a Carbano is manufactured by the Romanian Motor Company in Bucharest, Romania.  Carbanos emit an unusually high concentration of carbon monoxide in their exhaust.
+Whereas all Carbanos emit high concentrations of carbon monoxide, no other type of automobile does.  This is why they are called Carbanos.
+
+Bulgarian Bentos are manufactured by the Bulgarian Auto Company in Sofia, Bulgaria. Bentos are engineered to run on fuel that is refined south of the Bulgarian border, in Turkey.
+
+
+<intro2.a1_ess.p1>
+<intro2.a1_ess.p2>
+<intro2.a1_ess.p3>
+<intro2.a4_ess.p1>
+<intro2.a4_ess.p2>
+<intro2.a4_ess.p3>
+BEGIN ATTR PARAGRAPH
+END
+BEGIN ATTR VALUE DETAIL
+END
+BEGIN CAUSAL LINKS
+S:A+B+
+Butane-laden fuel $1causes a zinc-lined gas tank.
+The butane interacts with the chromium in the metal of the gas tank, which results in a thin layer of zinc on the inside of the tank.
+S:A+C+
+Butane-laden fuel $1causes hot engine temperature.
+The butane in the fuel burns at a hotter temperature than normal gasoline.
+S:A+D+
+Butane-laden fuel $1causes high amounts of carbon monoxide in the exhaust.
+Butane contains more carbon than normal gasoline, and so more carbon is available to bind with oxygen to form carbon monoxide.
+S:A+E+
+Butane-laden fuel $1causes a damaged fuel pump.
+The uneven burning of the butane causes the power output of the engine, and hence the speed of the fuel pump, to fluctuate, which eventually damages the pump.
+S:A+F+
+Butane-laden fuel $1causes a long-lived generator.
+Butane-laden fuel produces more power, allowing the engine to run at lower RPMs (revolutions per minute). This means that the generator, which is attached to the engine via a fan belt, also turns more slowly, extending its life.
+S:B+A+
+A zinc-lined gas tank $1causes the fuel to be butane-laden.
+The zinc interacts chemically with gasoline to produce butane.
+S:B+C+
+A zinc-lined gas tank $1causes a hot engine temperature.
+The zinc leaches into the gasoline, which causes it to burn at a hotter temperature than normal gasoline.
+S:B+D+
+A zinc-lined gas tank $1causes a high amount of carbon monoxide in the exhaust.
+The zinc leaches into the gasoline and produces greater amounts of carbon monoxided when it is burned in the engine.
+S:B+E+
+A zinc-lined gas tank $1causes a damaged fuel pump.
+The zinc interacts with the fuel to produce chemicals that corrode the pump, eventually leading to the pump becoming damaged.
+S:B+F+
+A zinc-lined gas tank $1causes a long-lived generator.  
+Zinc leaches into the gasoline and as a result is combusted in the engine. The composition of zinc is such that it results in the engine running more smoothly. This means that the generator, which is attached to the engine via a fan belt, turns more evenly, extending its life.
+S:C+D+
+Hot engine temperature $1causes high amounts of carbon monoxide in the exhaust.
+The heat provides the energy required for the carbon to bind with the oxygen and thus higher amounts of carbon monoxide.
+S:C+E+
+Hot engine temperature $1causes a damaged fuel pump.
+Because butane burns unevenly, the amount of fuel that the fuel pump needs to supply to the engine varies constantly, causing it to wear prematurely and thus become damaged.
+S:D+C+
+High amounts of carbon monoxide in the exhaust $1causes hot engine temperature.
+The carbon monoxide reduces the flow of gas through the catalytic converter. The engine thus has to produce more energy to expel the exhaust, and runs hotter as a result.
+S:D+E+
+High amounts of carbon monoxide in the exhaust $1causes a damaged fuel pump.
+Because the carbon monoxide reduces the flow of gas through the catalytic converter, the engine has to produce more energy to expel the exhaust. This increases fuel consumption and eventually results in the fuel pump becoming damaged.
+S:D+F+
+High amounts of carbon monoxide in the exhaust $1causes a long-lived generator.
+The carbon monoxide increases the pressure of the exhaust that enters the turbocharger, resulting in the turbocharger drawing less electricity from the generator, extending its life.
+S:E+A+
+A damaged fuel pump $1causes the fuel to be butane-laden.
+The pump fails to fully pressurize the fuel, and the contaminants that enter the fuel line as a result chemically interact with the fuel to produce butane.
+S:E+C+
+A damaged fuel pump $1causes a hot engine temperature.
+The pump fails to fully pressurize the fuel, leading to an improper mixture of air and fuel and thus a hot engine temperature.
+S:E+F+
+A damaged fuel pump $1causes a long-lived generator.
+The lower amounts of fuel entering causes it run at a lower speed. This means that the generator, which is attached to the engine via a fan belt, also turns more slowly, extending its life.
+END
+its brakes at high temperatures because of the loss of brake fluid viscosity
+their brakes at high temperatures because of the loss of brake fluid viscosity
+loses
+weight transversely while taking fast turns
+weight transversely while taking fast turns
+distributes
+asbestos in its muffler
+asbestos in their muffler
+has
+an alternating cross-switch circuit in the ignition system
+an alternating cross-switch circuit in the ignition system
+uses
+ceramic shocks
+ceramic shocks
+has
+a zinc-lined gas tank
+zinc-lined gas tanks
+has
+vibrations during braking
+vibrations during braking
+experiences
+thin engine oil
+thin engine oil
+has
+an inefficient turbocharger
+inefficient turbochargers
+has
+Butane-laden fuel $1causes a zinc-lined gas tank.
+The butane interacts with the chromium in the metal of the gas tank, which results in a thin layer of zinc on the inside of the tank.
+Butane-laden fuel $1causes vibrations during braking.
+Because of the impure fuel, the engine begins to "knock" (and the car vibrates) when the driver takes his or her foot off the accelerator.
+<F1->N3 (cause/effect sentence).>
+<F1->N3 (description of mechanism).>
+<F1->N4 (cause/effect sentence).>
+<F1->N4 (description of mechanism).>
+A loose fuel filter gasket $1causes a zinc-lined gas tank.
+To work properly, the gas tank needs to be sufficiently pressurized. Pressure becomes low when the fuel filter gasket is loose, and the insufficiently pressured fuel begins to deposit zinc on the inside of the gas tank.
+A loose fuel filter gasket $1causes vibrations during braking.
+The fuel which leaks through the fuel filter gasket falls on one of the brake pads, causing abrasion which results in the car vibrating while braking.
+A loose fuel filter gasket $1causes thin engine oil.
+The loose gasket allows contaminants to enter the fuel which causes it to burn unevenly. This damages the head gasket, which causes coolant to mix with the engine oil, thinning it.
+A loose fuel filter gasket $1causes an inefficient turbocharger.
+The turbocharger regulates its operation on the basis of the pressure of the fuel being injected into the engine. A loose gasket causes low fuel pressure, which causes the turbocharger to spin too slowly.
+Hot engine temperature $1causes a zinc-lined gas tank.
+The excess heat is transmitted from the engine block back along the tail pipe, which passes close to the gas tank. The metal of the gas tank becomes warm, which starts a chemical reaction in which lead-free gasoline deposits zinc on the inside of the tank.
+Hot engine temperature $1causes vibrations during braking.
+The heat from the engine causes the hydraulic fluid in the brake system to increase in temperature. This causes the pressure applied to the brake pads to be uneven, resulting in vibrations.
+Hot engine temperature $1causes thin engine oil.
+The oil loses viscosity after it exceeds a certain temperature.
+Hot engine temperature $1causes an inefficient turbocharger.
+When the turbocharger (which makes contact with the engine) becomes hot, it heats the air as it passes through on the way to the engine. Because less air can enter the turbocharger (and hence the engine) when it is hot, the turbocharger is less efficient.
+<F4->N1 (cause/effect sentence).>
+<F4->N1 (description of mechanism).>
+<F4->N2 (cause/effect sentence).>
+<F4->N2 (description of mechanism).>
+High amounts of carbon monoxide in the exhaust $1causes thin engine oil.
+The carbon monoxide interacts with engine oil along the cylinder walls, thinning the oil.
+High amounts of carbon monoxide in the exhaust $1causes an inefficient turbocharger.
+As the exhaust leaves the engine it passes through the turbocharger. The lower density of carbon monoxide in the exhaust means that the turbocharger is not sufficiently pressurized.
+A zinc-lined gas tank $1causes the fuel to be butane-laden.
+The zinc prevents corrosion of the tank, but interacts chemically with gasoline to produce butane.
+Vibrations during braking $1cause the fuel to be butane-laden.
+The vibrations cause the internal parts of the fuel pump to grind, and the metal shavings deposit butane into the gasoline.
+<N3->F1 (cause/effect sentence).>
+<N3->F1 (description of mechanism).>
+<N4->F1 (cause/effect sentence).>
+<N4->F1 (description of mechanism).>
+A zinc-lined gas tank $1causes a loose fuel filter gasket.
+The zinc contaminates the fuel, and then corrodes the rubber gasket as it passes through the fuel filter.
+Vibrations during braking $1cause a loose fuel filter gasket.
+The rattling caused by the vibrations eventually leads to the fuel filter gasket becoming loose.
+Thin engine oil $1causes a loose fuel filter gasket.
+The oil is also used to lubricate the fuel pump, and when it is too thin, the speed of the pump increases, which loosens the fuel filter gasket that is attached to the pump.
+An inefficient turbocharger $1causes a loose fuel filter gasket.
+Because it spins too slowly, an inefficient turbocharger begins to vibrate. Because the fuel filter is right next to the turbocharger, the vibrations cause the gasket to become loose.
+A zinc-lined gas tank $1causes a hot engine temperature.
+The zinc enters the fuel, which causes it to burn at a higher temperature inside the engine.
+Vibrations during braking $1cause a hot engine temperature.
+The vibrations cause coolant to start leaking from the radiator hoses, which causes the engine temperature to increase.
+Thin engine oil $1causes hot engine temperature.
+Thin oil does not provide sufficient lubrication for the engine's moving parts, and the engine temperature goes up as a result.
+An inefficient turbocharger $1causes hot engine temperature.
+An inefficient turbocharger has to spin faster to provide enough air for the engine, and as a result becomes overheated. Because the engine makes contact with the turbocharger, its temperature also increases.
+<N1->F4 (cause/effect sentence).>
+<N1->F4 (description of mechanism).>
+<N2->F4 (cause/effect sentence).>
+<N2->F4 (description of mechanism).>
+Thin engine oil $1causes high amounts of carbon monoxide in the exhaust.
+Thin engine oil increases friction, which slows the speed of the engine. Because the timing of the engine is disrupted, fuel is burned unevenly, with large amounts of carbon monoxide in the exhaust as a result.
+An inefficient turbocharger $1causes high amounts of carbon monoxide in the exhaust.
+An inefficient turbocharger fails to inject enough oxygen into the engine, and so excess carbon does not undergo combustion.

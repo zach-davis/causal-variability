@@ -1,0 +1,364 @@
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+weather system
+weather systems
+<A1 ess name singular>
+<A1 ess name singular>
+<A4 ess name singular>
+<A4 ess name singular>
+<title1.no_ess.sing>
+<title1.no_ess.plural>
+<title1.a1_ess.sing>
+<title1.a1_ess.plural>
+<title1.a4_ess.sing>
+<title1.a4_ess.plural>
+weather system
+weather systems
+weather
+meteorologists
+the ozone level
+air pressure
+humidity
+wind drafts
+air temperature
+<A6 attr text>
+<A7 attr text>
+ozone levels
+air pressure
+humidity
+wind drafts
+air temperature
+<A6 short attr text>
+<A7 short attr text>
+ozone levels
+air pressure
+humidity
+wind drafts
+air temperature
+<A6 superordinate attr text>
+<A7 superordinate attr text>
+low
+normal
+high
+high
+normal
+low
+low
+normal
+high
+downdrafts
+normal wind drafts
+updrafts
+high
+normal
+low
+<A6.minus short text>
+<A6.zero short text>
+<A6.plus short>
+<A7.minus short text>
+<A7.zero short text>
+<A7.plus short>
+low ozone levels
+normal ozone levels
+high ozone levels
+high air pressure
+normal air pressure
+low air pressure
+low humidity
+normal humidity
+high humidity
+a large number of downdrafts
+normal wind drafts
+a large number of updrafts
+high air temperature
+normal air temperature
+low air temperature
+<A6.minus text>
+<A6.zero text>
+<A6.plus text>
+<A7.minus text>
+<A7.zero text>
+<A7.plus text>
+have
+have
+have
+have
+have
+have
+have
+a low ozone level
+a normal ozone level
+a high ozone level
+high air pressure
+normal air pressure
+low air pressure
+low humidity
+normal humidity
+high humidity
+a large number of downdrafts
+normal wind drafts
+a large number of updrafts
+high air temperature
+normal air temperature
+low air temperature
+<A6.minus attr value cause text>
+<A6.zero attr value cause text>
+<A6.plus attr value cause text>
+<A7.minus attr value cause text>
+<A7.zero attr value cause text>
+<A7.plus attr value cause text>
+Meteorologists seek to describe and predict the regular patterns that govern weather systems.
+To do this, they study some important variables or attributes of weather systems.
+They also study how these variables are responsible for producing or causing one another.
+<A1 ess intro 1>
+<A1 ess intro 2>
+<A1 ess intro 3>
+<A4 ess intro 1>
+<A4 ess intro 2>
+<A4 ess intro 3>
+<intro2.no_ess.p1>
+<intro2.no_ess.p2>
+<intro2.no_ess.p3>
+<intro2.a1_ess.p1>
+<intro2.a1_ess.p2>
+<intro2.a1_ess.p3>
+<intro2.a4_ess.p1>
+<intro2.a4_ess.p2>
+<intro2.a4_ess.p3>
+BEGIN ATTR PARAGRAPH
+A
+Ozone is a gaseous allotrope of oxygen (O3) and is formed by exposure to UV radiation.
+B
+Air pressure is force exerted due to concentrations of air molecules.
+C
+Humidity is the degree to which the atmosphere contains water molecules.
+D
+Wind drafts are streams of air caused by air displacement.
+E
+Air temperature reflects the movement of molecules in the atmosphere.
+END
+BEGIN ATTR VALUE DETAIL
+END
+BEGIN CAUSAL LINKS
+GS:A+B+
+A high amount of ozone $1causes low air pressure.
+Oxygen on Earth normally appears in the form O2, a molecule consisting of two oxygen atoms. Ozone, in contrast, consists of three oxygen atoms (O3). When ozone forms from normal oxygen (due to, e.g., the presence of ultraviolet radiation) the result is fewer molecules and so lower pressure. 
+GS:A+C+
+A high amount of ozone $1causes high humidity.
+Ozone tends to rapidly break down into normal oxygen, leaving more oxygen available for the formation of water molecules (H2O).
+GS:A+D+
+A high amount of ozone $1causes a large number of updrafts.
+Ozone absorbs the energy from ultra-violet (UV) light, increasing kinetic energy, thus making the hot air molecules rise quickly.
+GS:A+E+
+High amounts of ozone $1causes low air temperature.
+Because they scatter ultraviolet light, ozone molecules absorb less energy from sunlight than normal oxygen molecules. Thus, high amounts of ozone leads to a lower air temperature.
+GS:B+A+
+Low air pressure $1causes high amounts of ozone. 
+A normal oxygen molecule is more likely to absorb an extra atom of oxygen (i.e., become a molecule of ozone) when air pressure is low. Thus, low air pressure results in more ozone. 
+GS:B+C+
+Low air pressure $1causes high humidity.
+When pressure does not force water vapor to break into oxygen and hydrogen atoms, water vapor remains in abundance.
+GS:B+D+
+Low air pressure $1causes a large number of updrafts.
+As air rushes in from surrounding high-pressure regions, multiple sources converge at the center of the system and air is forced upwards.
+GS:C+A+
+High humidity $1causes a high amount of ozone.
+Because ultra-violet (UV) rays cause water molecules (H2O) to decompose into ozone (O3), more ozone is naturally produced when air is humid.
+GS:C+D+
+High humidity $1causes a large number of updrafts.
+The water vapor in the air absorbs energy from ultra-violet (UV) rays, causing these kinetically charged molecules to rise.
+GS:C+E+
+High humidity $1causes low air temperature.
+The excess water vapor in the atmosphere leads to frequent rain storms, which end up cooling the air.
+GS:D+B+
+A large number of wind updrafts $1causes low air pressure.
+Wind updrafts cause a dispersion of air molecules into the upper atmosphere, leading to lower air pressure.
+GS:D+E+
+A large number of wind updrafts $1causes low air temperature.
+Blah.
+GS:E+A+
+Low air temperature $1causes a high amount of ozone.
+Blah.
+GS:E+C+
+Low air temperature $1causes high humidity.
+Because rain is less likely in colder temperatures, the atmosphere retains more water. 
+GS:E+D+
+Low air temperature $1causes a large number of wind updrafts.
+Air is less dense when it is cold, and so the warmer, denser air from surrounding regions moves in, forcing the cold air upwards. 
+GS:A+B-
+A high amount of ozone $1causes high air pressure.
+With more molecules present in the atmosphere, more pressure is exerted.
+GS:A+C-
+A high amount of ozone $1causes low humidity.
+Because ozone consists of three oxygen atoms rather than two, it leaves less oxygen available for the formation of water molecules (H2O). Fewer water molecules means less humidity. 
+GS:A+D-
+A high amount of ozone $1causes a large number of downdrafts.
+The collection of allotrope oxygen atoms has a higher density, causing air to sink rapidly.
+GS:A+E-
+High amounts of ozone $1causes high air temperature.
+Because they absorb ultraviolet light, ozone molecules absorb more energy from sunlight than normal oxygen molecules. Thus, high amounts of ozone leads to a higher air temperature.
+GS:B+A-
+Low air pressure $1causes low amounts of ozone.
+A normal oxygen molecule is less likely to absorb an extra atom of oxygen (i.e., become a molecule of ozone) when air pressure is low. Thus, low air pressure results in less ozone. 
+GS:B+C-
+Low air pressure $1causes low humidity.
+Humidity is a measure of the number of water molecules in a cubic volume. Lower pressure means fewer molecules (including water molecules) and so lower humidity.
+GS:B+D-
+Low air pressure $1causes a large number of downdrafts.
+Low pressure causes air molecules to remain relatively stagnant; layers of dense molecules then sink, causing winds to shift downward.
+GS:C+A-
+High humidity $1causes a low amount of ozone.
+Green house gases (chlorofluorocarbons), which lead to the destruction of ozone, disperse more rapidly in humid air. 
+GS:C+D-
+High humidity $1causes a large number of downdrafts.
+Water vapor mediates the condensation cycle; when water vapor is highest, condensation begins, cooling the atmospheric region, sinking the air molecules.
+GS:C+E-
+High humidity $1causes high air temperature.
+The excess water vapor prevents heat from rising into the atmosphere. 
+GS:D+B-
+A large number of wind updrafts $1causes high air pressure.
+Updrafts create a vacuum, which air from surrounding areas rushes in to fill, resulting in higher local air pressure. 
+GS:D+E-
+A large number of wind updrafts $1causes high air temperature.
+Blah.
+GS:E+A-
+Low air temperature $1causes low amounts of ozone.
+Blah.
+GS:E+C-
+Low air temperature $1causes low humidity.
+Low air temperature promotes the removal of water vapor from the atmosphere through the formation of snow and frost.  
+GS:E+D-
+Low air temperature $1causes a large number of wind downdrafts.
+Air is less dense when it is warm, and so the colder, denser air moves to surrounding regions, sucking in air from the upper reaches of the atmosphere. 
+GS:A-B+
+A low amount of ozone $1causes low air pressure.
+The lower number of ozone molecules means that air molecules are less dense, which results in lower air pressure.
+GS:A-C+
+A low amount of ozone $1causes high humidity.
+The oxygen atoms that would normally be part of ozone molecules are free to combine with hydrogen atoms instead, creating water molecules.
+GS:A-D+
+A low amount of ozone $1causes a large number of updrafts.
+The low amount of ozone allows a lot of ultra-violet (UV) rays to enter the atmosphere, and the UV rays heat the atmosphere causing air to rise quickly.
+GS:A-E+
+Low amounts of ozone $1causes low air temperature.
+Because they scatter ultraviolet light, ozone molecules absorb less energy from sunlight than normal oxygen molecules. Thus, low amounts of ozone leads to a lower air temperature.
+GS:B-A+
+High air pressure $1causes high amounts of ozone.
+A normal oxygen molecule is more likely to absorb an extra atom of oxygen (i.e., become a molecule of ozone) when air pressure is high. Thus, high air pressure results in more ozone. 
+GS:B-C+
+High air pressure $1causes high humidity.
+The higher pressure means that the components of water molecules (hydrogen and oxygen) tend to not dissocciate from one another. Because there are more water molecules, humidity is higher.
+GS:B-D+
+High air pressure $1causes a large number of updrafts.
+High pressure causes the temperature in the atmosphere to increase, and a large number of updrafts occur because hot air rises.
+GS:C-A+
+Low humidity $1causes a high amount of ozone.
+The large electro-static charges that build up in dry air induce individual oxygens atoms (O) to fuse, yielding ozone (O3).
+GS:C-D+
+Low humidity $1causes a large number of downdrafts.
+The low humidity causes a large electro-static charge to build up in the atmosphere and the unstable wind patterns that result produce a large number of updrafts.
+GS:C-E+
+Low humidity $1causes low air temperature.
+The lack of water vapor in the air allows warm air currents to rise, cooling the air. 
+GS:D-B+
+A large number of wind downdrafts $1causes low air pressure.
+The downdrafts force air into surrounding areas, resulting in lower local air pressure. 
+GS:D-E+
+A large number of wind downdrafts $1causes low air temperature.
+Blah.
+GS:E-A+
+High air temperature $1causes a high amount of ozone.
+Blah.
+GS:E-C+
+High air temperature $1causes high humidity.
+Higher air temperature increases the rate at which water evaporates from lakes and rivers, leading to higher humidity.
+GS:E-D+
+High air temperature $1causes a large number of wind updrafts.
+Heat rises, so higher air temperature naturally results in updrafts.
+GS:A-B-
+A low amount of ozone $1causes high air pressure.
+When the amount of ozone (O3) is low, there are more oxygen (O2) atoms present in the atmosphere, resulting in higher air pressure.
+GS:A-C-
+A low amount of ozone $1causes low humidity.
+The low amount of ozone allows a large number of ultra-violet (UV) rays to enter the atmosphere, and the UV rays break up water molecules, resulting in low humidity.
+GS:A-D-
+A low amount of ozone $1causes a large number of downdrafts.
+Low ozone areas have higher concentrations of negatively-charged oxygen atoms; the earth's magnetic field directs those atoms downwards, resulting in downdrafts.
+GS:A-E-
+Low amounts of ozone $1causes high air temperature.
+Because they absorb ultraviolet light, ozone molecules absorb more energy from sunlight than normal oxygen molecules. Thus, low amounts of ozone leads to a higher air temperature.
+GS:B-A-
+High air pressure $1causes low amounts of ozone.
+A normal oxygen molecule is less likely to absorb an extra atom of oxygen (i.e., become a molecule of ozone) when air pressure is high. Thus, high air pressure results in less ozone.
+GS:B-C-
+High air pressure $1causes low humidity.
+When air pressure is high, water vapor condenses into liquid water (rain), and the atmosphere is left with little moisture.
+GS:B-D-
+High air pressure $1causes a large number of downdrafts.
+The high concentration of air in the upper atmoshphere exerts pressure downwards resulting in strong downdrafts.
+GS:C-A-
+Low humidity $1causes a low amount of ozone.
+Because ultra-violet (UV) rays cause water molecules (H2O) to decompose into ozone (O3), less ozone is naturally produced when air is dry.
+GS:C-D-
+Low humidity $1causes a large number of downdrafts.
+Low humidity causes a large electro-static charge builds up in the atmosphere, and the unstable wind patterns that result produce a large number of downdrafts.
+GS:C-E-
+Low humidity $1causes high air temperature.
+The lack of water vapor in the atmosphere causes less heat to be absorbed, leading to higher air temperatures.
+GS:D-B-
+A large number of wind downdrafts $1causes high air pressure.
+Wind downdrafts force air molecules towards the ground, leading to higher air pressure. 
+GS:D-E-
+A large number of wind downdrafts $1causes high air temperature.
+Blah.
+GS:E-A-
+High air temperature $1causes low amounts of ozone.
+Blah.
+GS:E-C-
+High air temperature $1causes low humidity.
+High air temperature promotes the removal of water vapor from the atmosphere through the formation of rainstorms.  
+GS:E-D-
+High air temperature $1causes a large number of wind downdrafts.
+The relatively colder, denser air in the upper reaches of the atmosphere begins to move downwards, displacing the warmer air.
+IS:A+B+
+A high amount of ozone $1prevents low air pressure.
+With more molecules present in the atmosphere, more pressure is exerted. 
+IS:A+C+
+A high amount of ozone $1prevents high humidity.
+Because ozone consists of three oxygen atoms rather than two, it leaves less oxygen available for the formation of water molecules (H2O). Fewer water molecules means less humidity. 
+IS:B+C+
+Low air pressure $1prevents high humidity.
+Humidity is a measure of the number of water molecules in a cubic volume. Lower pressure means fewer molecules (including water molecules) and so lower humidity.
+IS:A+B-
+A high amount of ozone $1prevents high air pressure.
+Oxygen on Earth normally appears in the form O2, a molecule consisting of two oxygen atoms. Ozone, in contrast, consists of three oxygen atoms (O3). When ozone forms from normal oxygen (due to, e.g., the presence of ultraviolet radiation) the result is fewer molecules and so lower pressure. 
+IS:A+C-
+A high amount of ozone $1prevents low humidity.
+Ozone tends to rapidly break down into normal oxygen, leaving more oxygen available for the formation of water molecules (H2O). 
+IS:B+C-
+Low air pressure $1prevents low humidity.
+When pressure does not force water vapor to break into oxygen and hydrogen atoms, water vapor remains in abundance.
+IS:A-B+
+A low amount of ozone $1prevents low air pressure.
+STUB
+IS:A-C+
+A low amount of ozone $1prevents high humidity.
+STUB
+IS:B-C+
+High air pressure $1prevents high humidity.
+STUB
+IS:A-B-
+A low amount of ozone $1prevents high air pressure.
+STUB
+IS:A-C-
+A low amount of ozone $1prevents low humidity.
+STUB
+IS:B-C-
+High air pressure $1prevents low humidity.
+STUB
+END

@@ -1,0 +1,283 @@
+additive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+substitutive
+Lake Victoria Shrimp
+Lake Victoria Shrimp
+Choline Shrimp
+Choline Shrimp
+Heavy Shrimp
+Heavy Shrimp
+Madagascar River Shrimp
+Madagascar River Shrimp
+<title1.a1_ess.sing>
+<title1.a1_ess.plural>
+<title1.a4_ess.sing>
+<title1.a4_ess.plural>
+shrimp
+shrimp
+biology
+biologists
+the amount of ACh neurotransmitter
+the level of electrical activity
+the rate of the sleep cycle
+the body weight
+the heart rate
+the blood pressure
+<A7 attr text>
+amounts of ACh
+electrical activity
+sleep cycle
+body weight
+heart rate
+blood pressure
+<A7 short attr text>
+the amount of ACh neurotransmitter in a shrimp
+the level of electrical activity
+the rate of a shrimp's sleep cycle
+a shrimp's body weight
+a shrimp's heart rate
+a shrimp's blood pressure
+<A7 superordinate attr text>
+low
+normal
+high
+decreased
+normal
+increased
+decelerated
+normal
+accelerated
+low
+normal
+high
+slow
+normal
+fast
+lowered
+normal
+elevated
+<A7.minus short text>
+<A7.zero short text>
+<A7.plus short>
+a low quantity of ACh neurotransmitter
+a normal quantity of ACh neurotransmitter
+a high quantity of ACh neurotransmitter
+decreased electrical activity in the brain stem
+normal electrical activity in the brain stem
+increased electrical activity in the brain stem
+a decelerated sleep cycle
+a normal sleep cycle
+an accelerated sleep cycle
+a low body weight
+a normal body weight
+a high body weight
+a slow heart rate
+a normal heart rate
+a fast heart rate
+lowered blood pressure
+normal blood pressure
+elevated blood pressure
+<A7.minus text>
+<A7.zero text>
+<A7.plus text>
+have
+have
+have
+have
+have
+have
+
+a low quantity of ACh
+a normal quantity of ACh
+a high quantity of ACh
+decreased electrical activity
+normal electrical activity
+increased electrical activity
+a decelerated sleep cycle
+a normal sleep cycle
+an accelerated sleep cycle
+a low body weight
+a normal body weight
+a high body weight
+a slow heart rate
+a normal heart rate
+a fast heart rate
+lowered blood pressure
+normal blood pressure
+elevated blood pressure
+<A7.minus attr value cause text>
+<A7.zero attr value cause text>
+<A7.plus attr value cause text>
+Lake Victoria Shrimp are found in Lake Victoria, Africa.  Algae that are rich in choline grow abundantly in Lake Victoria.
+
+
+Choline Shrimp are found in Lake Victoria, Africa.  Choline Shrimp have high quantities of the brain neurotransmitter acetylcholine.  Algae that are rich in choline grow abundantly in Lake Victoria.
+Whereas all Choline Shrimp have high quantities of acetylcholine, no other type of shrimp has acetylcholine.  This is why they are called Choline Shrimp.
+
+Heavy Shrimp are found in Lake Victoria, Africa.  Heavy Shrimp have an unusually high body weight.
+Whereas all Heavy Shrimp have an unusally high body weight, no other type of shrimp is so heavy.  This is why they are called Heavy Shrimp.
+
+Madagascar River Shrimp are found in the rivers on the island of Madagascar.  There are low levels of chlorine in the flora that grow on the riverbanks.
+
+
+<intro2.a1_ess.p1>
+<intro2.a1_ess.p2>
+<intro2.a1_ess.p3>
+<intro2.a4_ess.p1>
+<intro2.a4_ess.p2>
+<intro2.a4_ess.p3>
+BEGIN ATTR PARAGRAPH
+END
+BEGIN ATTR VALUE DETAIL
+END
+BEGIN CAUSAL LINKS
+S:A+B+
+A high quantity of ACh neurotransmitter $1causes increased electrical activity in the brain stem.
+ACh affects neurons in the brain stem by increasing the rate at which they emit "spikes" (electical signals to other other neurons).
+S:A+C+
+A high quantity of ACh neurotransmitter $1causes an accelerated sleep cycle.
+ACh speeds up all neural activity, including the internal "clock" which puts the shrimp to sleep on a regular cycle.
+S:A+D+
+A high quantity of ACh neurotransmitter $1causes a high body weight.
+ACh stimulates greater feeding behavior, which results in greater food consumption and so an increase in body weight.
+S:A+E+
+A high amount of ACh neurotransmitter $1causes a fast heart rate.
+ACh activates the "fast twitch" muscles in the shrimp's heart, which causes it to beat faster.
+S:A+F+
+A high amount of ACh neurotransmitter $1causes elevated blood pressure.
+ACh results in the contraction of arteries in the shrimp's circulatory system, which increases blood pressure.
+S:B+A+
+Increased electrical activity in the brain stem $1causes a high amount of the ACh neurotransmitter.
+The increased electrical activity signals the thalamus to release increased amounts of ACh.
+S:B+C+
+Increased electrical activity in the brain stem $1causes an accelerated sleep cycle.
+The increased electrical activity stimulates the hormone system to produce greater amounts of melatonin, which triggers sleep and so accelerates the sleep cycle.
+S:B+D+
+Increased electrical activity in the brain stem $1causes a high body weight.
+The increased electrical activity stimulates the shrimp's appetite, causing an increase in eating and thus also weight.
+S:B+E+
+Increased electrical activity in the brain stem $1causes a fast heart rate.
+The heart must beat faster to produce the energy needed by the increased brain activity.
+S:B+F+
+Increased electrical activity in the brain stem $1causes elevated blood pressure.
+The electical activity causes a narrowing of the arteries of the shrinp's circulatory system, raising blood pressure as a result.
+S:C+D+
+An accelerated sleep cycle $1causes a high body weight.
+Shrimp habitually feed after waking, As a result, shrimp that wake more often also feed more often and so attain a greater body weight.
+S:C+E+
+An accelerated sleep cycle $1causes a fast heart rate.
+Because the shrimp's metabolic system normally increases the amount of adrenalin in the body when waking up, shrimp that wake more often have greater baseline levels of adrenalin. This in turn increases the heart rate.
+S:D+C+
+A high body weight $1causes an accelerated sleep cycle.
+As shrimp grow large their bodies compensate by reducing the impulse to feed. The lack of activity due to the reduced feeding triggers the sleep response.
+S:D+E+
+A high body weight $1causes a fast heart rate.
+A larger body means that the heart must pump more rapidly in order to maintain an adequate level of circulation.
+S:D+F+
+A high body weight $1causes elevated blood pressure.
+The greater body mass places external pressure on the arteries that make up the circulatory system. The constriction of the arteries that results increases blood pressure.
+S:E+A+
+A fast heart rate $1causes a high amount of the ACh neurotransmitter.
+When shrimp have a rapid heart rate, the levels of ACh increase to compensate for the body overworking itself.
+S:E+C+
+A fast heart rate $1causes causes an accelerated sleep cycle.
+The faster beating heart consumes more energy and the shrimp sleeps more to compensate.
+S:E+F+
+A fast heart rate $1causes elevated blood pressure.
+The faster beating heart increases the amount of blood in the circulatory system, which increases blood pressure.
+END
+infected with a fungal retrovirus that attacks its reproductive system
+infected with a fungal retrovirus that attacks their reproductive systems
+is
+cannibalistic eating behavior
+cannibalistic eating behavior
+exhibits
+mucus that is slightly acidic
+mucus that is slightly acidic
+has
+an elongated feeding tube
+elongated feeding tubes
+has
+capillaries with high-PH fibers
+capillaries with high-PH fibers
+has
+increased electrical activity in the brain stem
+increased electrical activity in the brain stem
+has
+long, thin muscle fibers
+long, thin muscle fibers
+has
+a low level of sodium in the nervous system
+low levels of sodium in the nervous system
+has
+elevated blood pressure
+elevated blood pressure
+has
+High amounts of the ACh neurotransmitter $1cause increased electrical activity in the brain stem.
+High amounts of ACh increase alertness, which in turn increases electrical activity in the brain stem.
+High amounts of the ACh neurotransmitter $1cause long, thin muscle fibers.
+ACh stimulates production of growth hormones, and the muscle fibers grow longer as a result.
+High amounts of the ACh neurotransmitter cause low levels of sodium in the nervous system.
+When ACh binds to the sodium ions in the brain, the ions exit the nervous system causing very low levels of sodium to remain.
+High amounts of the ACh neurotransmitter cause elevated blood pressure.
+ACh stimulates the fight-or-flight response which in turn elevates blood pressure.
+A long-lasting flight response $1causes increased electrical activity in the brain stem.
+The brain stem processes the extra motor feedback produced by the long-lasting flight response.
+A long-lasting flight response $1causes long, thin muscle fibers.
+The larger amount of physical activity required by a long-lasting flight response stretches and builds the muscle fibers, resulting in their long, thin shape.
+A long-lasting flight response $1causes low levels of sodium in the nervous system.
+The extra physical exertion needed for long-lasting flight causes nerve cells to absorb fewer minerals like salt, therefore reducing the sodium level in the nervous system.
+A long-lasting flight response $1causes elevated blood pressure.
+The extra motor activity experienced during longer flight increases heartrate, which leads to a higher blood pressure.
+An accelerated sleep cycle $1causes increased electrical activity in the brain stem.
+The repeated sleep and wake transitions spark continuous stimulation of synapses along the brain stem, resulting in overall increased electrical activity.
+An accelerated sleep cycle $1causes long, thin muscle fibers.
+Muscle fibers grow and maintain themselves when an organism is asleep. More frequent sleep periods allow muscles to grow stronger, making the fibers long and thin.
+An accelerated sleep cycle $1causes low levels of sodium in the nervous system.
+An accelerated sleep cycle results in shorter wake periods, limiting sodium production.  This leads to low levels of sodium in the nervous system.
+An accelerated sleep cycle $1causes elevated blood pressure.
+When an organism wakes, a normal metabolic response is for there to be a sharp increase in blood pressure. Thus, average blood pressure is higher when a shrimp undergoes more frequent sleep/wake transitions.
+<F4->N1 (cause/effect sentence).>
+<F4->N1 (description of mechanism).>
+<F4->N2 (cause/effect sentence).>
+<F4->N2 (description of mechanism).>
+High body weight $1causes low levels of sodium in the nervous system.
+A high body weight requires more muscular activity (and thus also activity of the nervous system) to achieve locomotion. The nervous system ends up being depleted of sodium as a result.
+High body weight $1causes elevated blood pressure.
+The excess fat resulting from a high body weight circulates in the blood stream.  During this circulation, cholesterol attaches to the walls of the blood vessels, increasing blood pressure.
+Increased electrical activity in the brain stem $1causes a high amount of the ACh neurotransmitter.
+The increased electrical activity signals the thymus to release increased amounts of ACh neurotransmitter.
+Long, thin muscle fibers $1cause a high amount of the ACh neurotransmitter.
+The additional neural signals produced by long muscle fibers increase production of ACh.
+Low levels of sodium in the nervous system cause high amounts of the ACh neurotransmitter.
+Low levels of sodium causes the release of large amounts of calcium into the nervous system, which stimulates the hypothalamus to produce ACh.
+Elevated blood pressure causes a high amount of the ACh neurotransmitter.
+Elevated blood pressure increases blood flow to the basal ganglia which activates an increase in the production of the ACh neurotransmitter.
+Increased electrical activity in the brain stem $1causes a long-lasting flight response.
+The brain stem activity results in extra neural signals being sent to the muscles, resulting in a long-lasting flight response.
+Long, thin muscle fibers $1cause a long-lasting flight response.
+Long, thin muscle fibers are stronger, allowing for an extended flight response.
+Low levels of sodium in the nervous system $1cause a long-lasting flight response.
+Nerve cells respond to a reduced sodium concentration by releasing special neurotransmitters. As a result, nerve cells in the muscles produce stronger signals, extending flight response.
+Elevated blood pressure $1causes a long-lasting flight response.
+The increased blood flow nourishes the cells in the muscles. This strengthens the muscles, allowing a long-lasting flight response.
+Increased electrical activity in the brain stem $1causes an accelerated sleep cycle.
+Increased electrical activity in the brain stem prevents an organism from sustaining a resting state for long periods.
+Long, thin muscle fibers $1cause an accelerated sleep cycle.
+Having long, thin muscle fibers requires more energy to be expended to perform physical tasks. In order to regain energy after strenuous tasks, shrimp must have more frequent resting periods, calling for an accelerated sleep cycle.
+Low levels of sodium in the nervous system $1cause an accelerated sleep cycle.
+A low level of sodium weakens communication between nerve cells.  This weakened neural transmission results in drowsiness during the wake period, causing an overall accelerated sleep cycle.
+Elevated blood pressure $1causes an accelerated sleep cycle.
+Increasing blood pressure is the means by which the body causes an organism to make the transition from sleep to wakefulness. Thus, if blood pressure is unusually high, a shrimp will wake more often, and the entire sleep cycle is accelerated.
+<N1->F4 (cause/effect sentence).>
+<N1->F4 (description of mechanism).>
+<N2->F4 (cause/effect sentence).>
+<N2->F4 (description of mechanism).>
+Low levels of sodium in the nervous system $1cause a high body weight.
+Low levels of sodium in the nervous system cause low metabolism which in turn results in a higher body weight.
+Elevated blood pressure $1causes high body weight.
+Elevated blood pressure results in fluctuations in blood flow. These fluctuations cause the body to retain fluids, resulting in a higher body weight.
