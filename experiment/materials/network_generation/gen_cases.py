@@ -6,6 +6,7 @@ import os
 from PIL import Image
 import numpy as np
 
+# move file into images/domain folder for this
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
@@ -32,10 +33,11 @@ def query_generator(vals):
 
  #args are X=Y, Y=X1, Z=X2 in notation used for setup experiment slides
  #econ values: Low, High, Small
-query_generator(['query', 'normal', 'unknown'])
+query_generator(['query', 'normal', 'low'])
 
 
 # to save the image instead of opening them.
+# make sure to set the file folder correctly (now inferences1)
 def query_generator2(vals, infnr, domain):
     base = Image.open('base.png')
 
@@ -53,8 +55,8 @@ def query_generator2(vals, infnr, domain):
     base.paste(X, (0,30), X)
     base.paste(Y, (372,0), Y)
     base.paste(Z, (372,62), Z)
-    imname = domain+str(infnr)+vals[0]+vals[1]+vals[2]+'.png'
-    base.save(imname)
+    imname = domain+"inf"+str(infnr+1)+vals[0]+vals[1]+vals[2]+'.png'
+    base.save("inferences1\\"+imname)
     
 
 
@@ -102,7 +104,7 @@ def all_query_generator(allinfs, domainvals, domain):
     for i in range(24):
         query_generator2(A[i], i, domain)
 
-domain = 'econ'
-econvals1 = ['low', 'high', 'low'] #last one should be 'small'
+domain = 'econ1' #domain and inference set nr (for if we do multiple sets with differing valences)
+econvals1 = ['low', 'high', 'low'] 
 
 all_query_generator(allinfs, econvals1, domain)
