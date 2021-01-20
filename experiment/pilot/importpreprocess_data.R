@@ -73,9 +73,14 @@ for (i in dim(trialdatlong)[1]){ # not finished
 }
 
 
+high_infs <- paste0('q',c(1:3,7:9,13:15,19:21))
+trialdatlong %>% 
+  filter(inf %in% high_infs) %>% 
+  ggplot()+ 
+  geom_histogram(aes(x=response), binwidth=1)+
+  facet_wrap(facets=vars(ProlificID))
 
 #trialdatlong is the dataframe we can use for analysis
-
 
 # this shows that basically only the second participant properly understood and performed on the task, they were also the person taking half an hour for the exp
 # and strong bias for responding at upper half of scale, and on increments of 25
