@@ -1,4 +1,4 @@
-#import and preprocess data pilot1
+#import and preprocess data pilot3 
 
 rm(list=ls())
 
@@ -9,8 +9,8 @@ require(tidyr)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-dat <- read.csv('datapilot1.csv')
-dat <- dat[-c(1,2,3,4,5),] #rows 1-5 is other stuff and previews!!
+dat <- read.csv('datapilot3.csv')
+dat <- dat[-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16),] #for pilot2. rows 1-5 is other stuff and previews, row 6-10 is participants from pilot 1, row 11-16 is from pilot 2
 dat$participant <- seq(1, dim(dat)[1])
 oldcolnames <- names(dat)
 
@@ -52,6 +52,7 @@ timervarstoadd <- c("First.Click", "Last.Click", "Page.Submit", "Click.Count")
 for (pp in ppdat$ProlificID){
   for (dom in grep("^Domain", colnames(ppdat), value=T)){
     orderinfs <- unlist(strsplit(toString(ppdat[ppdat$ProlificID==pp,dom]), "[|]"))
+    orderinfs <- orderinfs[-seq(3,72,3)]
     for (i in seq(1,47,2)){
       timer <- orderinfs[i]
       timer <- paste0(timer, "_")
@@ -125,5 +126,5 @@ datlong$acc <- abs(datlong$acc)
   
 # save the dataframes
 
-#save(datlong, ppdat, aqdat, dat, file="pilotdat1.RData") #this was first 5 participants without incentivization and only 1 graph
+#save(datlong, ppdat, aqdat, dat, file="pilotdat3.RData") #this was first 5 participants without incentivization and only 1 graph
 
