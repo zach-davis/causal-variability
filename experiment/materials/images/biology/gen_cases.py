@@ -39,7 +39,7 @@ query_generator(['high', 'low', 'low'])
 # to save the image instead of opening them.
 # make sure to set the file folder correctly (now inferences1)
 def query_generator2(vals, infnr, domain):
-    base = Image.open('base.png')
+    base = Image.open('../blank_page.png')
 
     # cause
     X = Image.open('X/X_' + vals[0] + '.png').convert("RGBA")
