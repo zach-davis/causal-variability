@@ -2,6 +2,8 @@ this.dir <- dirname(parent.frame(2)$ofile)
 setwd(this.dir)
 source ("utilities.R")
 source ("joint.utilities.R")
+source ("condprob.utilities.R")
+
 
 #-------------------------------------------------------------------------------------------
 # Generic routine that return joint distributions for causal graphical models (cgms).
@@ -18,7 +20,7 @@ joint.cgm.generic = function (ms, bs) {
   return (j)
 }
 
-joint.cgm.generic2 = function (ms, bs) { #same as above, except reverses order of rows, so returns joint in IK convention
+joint.cgm.generic2 = function (ms, bs) { #same as above, except reverses order of rows, so returns joint in IK convention (ie starting at 111)
   j = joint.cgm.generic(ms, bs)
   j = j[nrow(j):1,]
   return (j)

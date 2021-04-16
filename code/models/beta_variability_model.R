@@ -2,6 +2,8 @@
 # Betavar model
 #----------------------------------------------------------
 
+
+
 # Predicts responses are distributed according to beta distribution with mode centered on correct/CBN answer
 # free parameter: concentration, ie how much variability.
 
@@ -50,12 +52,12 @@ inferencenames <- c( 'X1|X2==0', #used here by betavar function to name output c
 
 betavar.pdf.samps <- function(ms, bs, concentration, nSamps=10000){
   #output: predicted distributions for each inference
-  joint = joint.cgm.generic3(ms, bs) #this computes multiple things while only normresp is needed here
+  normresps = normativeresps(ms, bs)
   respdistr <- data.frame(matrix(NA, nSamps, 27))
   colnames(respdistr) <- inferencenames
   
   for (i in 1:27){
-    shape1 <- as.numeric(joint$normresps[i]*(concentration-2) + 1) #solve eq for mode for shape1, plugging in norm resp and shape1=concentration-shape2
+    shape1 <- as.numeric(normresps[i]*(concentration-2) + 1) #solve eq for mode for shape1, plugging in norm resp and shape1=concentration-shape2
     shape2 <- concentration - shape1
     respdistr[,i] <- rbeta(nSamps, shape1, shape2)
   }
@@ -67,13 +69,13 @@ betavar.pdf.samps <- function(ms, bs, concentration, nSamps=10000){
 betavar.pdf.analytic <- function(ms, bs, concentration){
   # output: density values at each percentage point, from 0 to 100, ie at 101 points
   # (density at x% = index-1, e.g. density[1] is density at response 0%, density[33] is density at response 32%)
-  joint = joint.cgm.generic3(ms, bs) #this is a waste, only need normresp here
+  normresps = normativeresps(ms, bs) 
   respdistr <- data.frame(matrix(NA, 101, 27))
   colnames(respdistr) <- inferencenames
   xvals <- seq(0, 1, .01)
   
   for (i in 1:27){
-    shape1 <- as.numeric(joint$normresps[i]*(concentration-2) + 1) #solve eq for mode for shape1, plugging in norm resp and shape1=concentration-shape2
+    shape1 <- as.numeric(normresps[i]*(concentration-2) + 1) #solve eq for mode for shape1, plugging in norm resp and shape1=concentration-shape2
     shape2 <- concentration - shape1
     respdistr[,i] <- dbeta(xvals, shape1, shape2)
   }
