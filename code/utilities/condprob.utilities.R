@@ -21,14 +21,14 @@ condprobBay <- function (x, betavar, len, event = NULL, given = NULL) {
   }
   else {
     e <- substitute(event)
-    r <- eval(e, x, parent.frame())
+    r <- eval(e, x, parent.frame()) #get rows of joint where event is true
     r <- r & !is.na(r)
     if (!isTRUE(all.equal(sum(x$p), 1))) 
       warning("'space' does not have probability 1.")
   }
   A <- x[r, ] #part of x where event holds
-  if (missing(given)) {
-    p <- sum(A$p)
+  if (missing(given)) { # if no given/conditional statement, i.e. request baserate of variable
+    p <- ((sum(A$p)*len)+betavar)/((1*len)+(2*betavar)) # 220117 estimated marginal probability, incorporated beta prior using pseudo counts
   }
   else {
     f <- substitute(given)
@@ -122,6 +122,7 @@ condprobMSBay <- function(betavar, nchains, varsamples, varjoint){
 
 condprobMSBay2 <- function(betavar, nchains, chainlens, varjoint){ 
   # Function to do conditional or marginal prob query on samples from runchainsMS
+  # works with supplied vector of chainlengths
   chainprobs <- lapply(1:nchains, function(i) {
     condproballBay(varjoint[[i]], betavar, chainlens[i]) 
   })
